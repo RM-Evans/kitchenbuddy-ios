@@ -1,5 +1,19 @@
 # Welcome to your new ignited app!
 
+```
+# you might also need to do this: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+LOCATION="~/.nvm/versions/node/v14.16.1"
+export PATH="$LOCATION/bin:$PATH"
+export LDFLAGS="-L$LOCATION/lib"
+export CPPFLAGS="-I/usr/local/opt/node@14/include"
+npx ignite-cli new MyApp
+
+# add a npm run target: { ... "ios": "react-native run-ios", ... }
+```
+
+
+
 [![CircleCI](https://circleci.com/gh/infinitered/ignite.svg?style=svg)](https://circleci.com/gh/infinitered/ignite)
 
 ## The latest and greatest boilerplate for Infinite Red opinions
