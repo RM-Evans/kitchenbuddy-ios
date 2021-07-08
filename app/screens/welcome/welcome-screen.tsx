@@ -12,7 +12,7 @@ const CONTAINER: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 const TEXT: TextStyle = {
-  color: color.palette.white,
+  color: color.palette.offWhite,
   fontFamily: typography.primary,
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -83,23 +83,19 @@ export const WelcomeScreen = observer(function WelcomeScreen() {
 
   return (
     <View testID="WelcomeScreen" style={FULL}>
-      <Wallpaper />
+      {/* <Wallpaper /> */}
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
         <Header headerTx="welcomeScreen.poweredBy" style={HEADER} titleStyle={HEADER_TITLE} />
         <Text style={TITLE_WRAPPER}>
-          <Text style={TITLE} text="Your new app, " />
+          <Text style={TITLE} text="KITCHEN BUDDY" />
+          {/* <Text style={TITLE} text="Your new app, " />
           <Text style={ALMOST} text="almost" />
-          <Text style={TITLE} text="!" />
+          <Text style={TITLE} text="!" /> */}
         </Text>
         <Text style={TITLE} preset="header" tx="welcomeScreen.readyForLaunch" />
-        <Image source={bowserLogo} style={BOWSER} />
+        {/* <Image source={bowserLogo} style={BOWSER} /> */}
         <Text style={CONTENT}>
-          This probably isn't what your app is going to look like. Unless your designer handed you
-          this screen and, in that case, congrats! You're ready to ship.
-        </Text>
-        <Text style={CONTENT}>
-          For everyone else, this is where you'll see a live preview of your fully functioning app
-          using Ignite.
+          my kitchen buddy stuff will be in here
         </Text>
       </Screen>
       <SafeAreaView style={FOOTER}>
