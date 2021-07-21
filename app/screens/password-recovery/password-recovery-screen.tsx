@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 //TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
@@ -131,6 +131,9 @@ export const PasswordRecoveryScreen = observer(function PasswordRecoveryScreen()
     // const nextScreen = () => navigation.navigate("login")
     const goBack = () => navigation.goBack()
     const goLogin = () => navigation.navigate("login")
+
+    //email input state
+    const [email, setEmail] = useState("");
   
     return (
         
@@ -157,6 +160,10 @@ export const PasswordRecoveryScreen = observer(function PasswordRecoveryScreen()
                     keyboardType="email-address"
 
                     returnKeyType="next"
+
+
+                    onChangeText={(email) => setEmail(email)}
+                    value={email}
                     // onSubmitEditing={() => { this.loginPassword.focus(); }}
                     // https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar
                     //
@@ -166,8 +173,8 @@ export const PasswordRecoveryScreen = observer(function PasswordRecoveryScreen()
 
 
                 <Button onPress={goBack} style={EMAIL_SUBMIT_BTN}><Text style={EMAIL_SUBMIT_BTN_TEXT}>send email</Text></Button> 
-
-
+                {/* "console logging my text input" */}
+                <Text >{email}</Text>
 
                 </View>
                 

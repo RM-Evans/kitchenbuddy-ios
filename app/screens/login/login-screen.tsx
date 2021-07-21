@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 //TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 
+import { validate } from '../../utils/validate'
 
 
 const FULL: ViewStyle = { flex: 1 }
@@ -71,8 +72,6 @@ const TEXT: TextStyle = {
     
     fontSize: 18,
 
-
-
   }
 
   const FORM_CONTAINER: ViewStyle = {
@@ -137,10 +136,42 @@ export const LoginScreen = observer(function LoginScreen() {
     const navigation = useNavigation()
     // const nextScreen = () => navigation.navigate("login")
     const goBack = () => navigation.goBack()
+    const goMainMenu = () => navigation.navigate("main_menu")
     const goSignUp = () => navigation.navigate("signup")
     const goPasswordRecovery = () => navigation.navigate("password_recovery")
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+
+    const onLogin = () => {
+
+        const validation = validate({
+            username: {
+                email: true
+            }
+        }, { username: email, password })
+
+        console.log(validation)
+        if( Object.keys( validation ).length > 0 ){
+            alert('you are invalid')
+        }else{
+            alert('success, backend login!')
+            // const auth = await apollo.mutation(login...)
+            // if( auth.success ){ 
+                navigation.navigate('DashboardScreen')
+            // } else {
+            //   alert('bad password')
+            // }
+        }
+
+        // TODO: validation
+
+    }
     
     return (
+
+        
         
             <View testID="LoginScreen" style={FULL}>
 
@@ -165,11 +196,15 @@ export const LoginScreen = observer(function LoginScreen() {
                     keyboardType="email-address"
 
                     returnKeyType="next"
+
+                    onChangeText={(email) => setEmail(email)}
+                    value={email}
                     // onSubmitEditing={() => { this.loginPassword.focus(); }}
                     // https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar
                     //
                     // blurOnSubmit={false}
                     />
+                    <Text style={{...PRIMARYTEXTCOLOR}}>{email}</Text>
                     {/* <Text text="password" style={FORM_FIELD_TITLE}/>  */}
                     <TextInput
                     style={FORM_FIELD}
@@ -177,6 +212,9 @@ export const LoginScreen = observer(function LoginScreen() {
                     autoCapitalize="none"
                     textContentType="password"
                     secureTextEntry={true}
+
+                    onChangeText={(password) => setPassword(password)}
+                    value={password}
                     />
                      <Text 
                      style={FORGOT_PASS_TEXT}
@@ -185,11 +223,17 @@ export const LoginScreen = observer(function LoginScreen() {
                      Forgot Password?
                     </Text>
 
-                <Button onPress={goBack} style={LOGIN_SUBMIT_BTN}><Text style={LOGIN_SUBMIT_BTN_TEXT}>login</Text></Button> 
-
+                {/* <Button onPress={goBack} style={LOGIN_SUBMIT_BTN}><Text style={LOGIN_SUBMIT_BTN_TEXT}>login</Text></Button>  */}
+                <Button onPress={onLogin} style={LOGIN_SUBMIT_BTN}><Text style={LOGIN_SUBMIT_BTN_TEXT}>login</Text></Button> 
 
 
                 </View>
+                <Text 
+                 style={SIGNUP_REDIRECT_TEXT}
+                 >
+                 main menu<Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}> menu </Text>
+                </Text>
+
                 
                 <Text 
                  style={SIGNUP_REDIRECT_TEXT}

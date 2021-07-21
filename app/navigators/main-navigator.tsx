@@ -6,7 +6,7 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, LoginScreen, SignupScreen, PasswordRecoveryScreen } from "../screens"
+import { WelcomeScreen, DemoScreen, DemoListScreen, LoginScreen, SignupScreen, PasswordRecoveryScreen, MainMenu, ChooseDifficulty, ChooseTitle} from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -43,6 +43,9 @@ export function MainNavigator() {
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="signup" component={SignupScreen} />
       <Stack.Screen name="password_recovery" component={PasswordRecoveryScreen} />
+      <Stack.Screen name="main_menu" component={MainMenu} />
+      <Stack.Screen name="choose_difficulty" component={ChooseDifficulty} />
+      <Stack.Screen name="choose_title" component={ChooseTitle} />
     </Stack.Navigator>
   )
 }
