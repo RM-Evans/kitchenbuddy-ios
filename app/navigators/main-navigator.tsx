@@ -6,7 +6,9 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, LoginScreen, SignupScreen, PasswordRecoveryScreen, MainMenu, ChooseDifficulty, ChooseTitle} from "../screens"
+import { WelcomeScreen, DemoScreen, DemoListScreen, LoginScreen, SignupScreen,
+         PasswordRecoveryScreen, MainMenu, ChooseDifficulty, ChooseTitle,
+          ChooseTitleAndDifficulty, AssignMatches} from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,6 +26,15 @@ export type PrimaryParamList = {
   welcome: undefined
   demo: undefined
   demoList: undefined
+  login: undefined
+  password_recovering:undefined
+  signup:undefined
+  password_recovery:undefined
+  main_menu: undefined
+  choose_difficulty: undefined
+  choose_title: undefined
+  choose_title_difficulty:undefined
+  assign_matches:undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -46,6 +57,8 @@ export function MainNavigator() {
       <Stack.Screen name="main_menu" component={MainMenu} />
       <Stack.Screen name="choose_difficulty" component={ChooseDifficulty} />
       <Stack.Screen name="choose_title" component={ChooseTitle} />
+      <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />
+      <Stack.Screen name="assign_matches" component={AssignMatches} />
     </Stack.Navigator>
   )
 }

@@ -114,7 +114,7 @@ export const MainMenu = observer(function MainMenu() {
     
     const goChooseDifficulty = () => navigation.navigate('choose_difficulty')
 
-    
+    const goChooseDifficultyAndTitle = () => navigation.navigate("choose_title_difficulty")
 
     
     return (
@@ -144,6 +144,13 @@ export const MainMenu = observer(function MainMenu() {
                 
 
                 {/* FOR DEVVING */}
+
+                <Text 
+                 style={SIGNUP_REDIRECT_TEXT}
+                 >
+                 diff and title<Text style={SIGNUP_REDIRECT_LINK} onPress={goChooseDifficultyAndTitle}> menu </Text>
+                </Text>
+
                 <Text 
                  style={SIGNUP_REDIRECT_TEXT}
                  >
@@ -158,3 +165,6 @@ export const MainMenu = observer(function MainMenu() {
     )
 })
 
+
+//on create game, how do I start capturing data from screen to screen, eventually creating one object or "game"?
+//on create game, make new thing

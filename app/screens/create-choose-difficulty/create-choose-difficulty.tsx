@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 //TextInput HOC?
-import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
+import { View, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
