@@ -1,0 +1,57 @@
+const data = {
+  name: "Animal Match",
+  round: 1,
+  questions: [
+    {
+      id: 1,
+      question: {
+        prompt: "ROAR!",
+        soundFile: "file://some/path/lion/roar.mp3",
+      },
+      answer: {
+        prompt: "Lion",
+        image: "file://some/path/lion/mufasa.jpg",
+      },
+    },
+    {
+      id: 2,
+      question: {
+        prompt: "Quack!",
+        soundFile: "file://some/path/duck/quack.mp3",
+      },
+      answer: {
+        prompt: "Duck",
+        image: "file://some/path/duck/malard.jpg",
+      },
+    },
+    {
+      id: 3,
+      question: {
+        prompt: "Moo",
+        soundFile: "file://some/path/cow/moo.mp3",
+      },
+      answer: {
+        prompt: "Cow",
+        image: "file://some/path/cow/bessy.jpg",
+      },
+    },
+  ],
+}
+
+const addNewRow = () => {
+  // show the input panel
+}
+
+const onComplete = (question, answer) => {
+  // one day we'll make unique ids
+  const id = data.questions.length + 1
+  const q = {
+    id,
+    question,
+    answer,
+  }
+
+  data.questions.push(q)
+}
+
+// do the rest of the components / inputs / etc
