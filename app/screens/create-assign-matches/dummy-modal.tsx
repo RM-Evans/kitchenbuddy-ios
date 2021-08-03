@@ -66,15 +66,13 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
       <Text>play</Text>
     </Button>
     <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
-    {/* <Button>
-        <Text>select</Text>
-      </Button> */}
   </TouchableOpacity>
 )
 
 interface DummyModalProps {
   closeModal: (item: any) => unknown
 }
+
 export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   const [selected, setSelected] = useState<any[]>([])
 
