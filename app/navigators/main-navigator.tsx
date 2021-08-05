@@ -19,6 +19,7 @@ import {
   ChooseTitleAndDifficulty,
   AssignMatches,
   GameLibrary,
+  GameIndividual,
 } from "../screens"
 
 /**
@@ -47,6 +48,7 @@ export type PrimaryParamList = {
   choose_title_difficulty: undefined
   assign_matches: undefined
   game_library: undefined
+  individual_game: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -72,6 +74,7 @@ export function MainNavigator() {
       <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />
       <Stack.Screen name="assign_matches" component={AssignMatches} />
       <Stack.Screen name="game_library" component={GameLibrary} />
+      <Stack.Screen name="individual_game" component={GameIndividual} />
     </Stack.Navigator>
   )
 }
