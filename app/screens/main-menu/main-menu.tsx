@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
@@ -8,7 +8,7 @@ import { color, spacing, typography } from "../../theme"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
+  backgroundColor: color.palette.primaryBackground,
   paddingHorizontal: spacing[4],
 }
 
@@ -100,7 +100,7 @@ export const MainMenu = observer(function MainMenu() {
             <Text style={MENU_BUTTONS_TEXT}>PLAY</Text>
           </Button>
 
-          <Button style={MENU_BUTTONS} onPress={goChooseDifficulty}>
+          <Button style={MENU_BUTTONS} onPress={goChooseDifficultyAndTitle}>
             <Text style={MENU_BUTTONS_TEXT}>CREATE GAME</Text>
           </Button>
 
@@ -111,13 +111,13 @@ export const MainMenu = observer(function MainMenu() {
 
         {/* FOR DEVVING */}
 
-        <Text style={SIGNUP_REDIRECT_TEXT}>
+        {/* <Text style={SIGNUP_REDIRECT_TEXT}>
           diff and title
           <Text style={SIGNUP_REDIRECT_LINK} onPress={goChooseDifficultyAndTitle}>
             {" "}
             menu{" "}
           </Text>
-        </Text>
+        </Text> */}
 
         <Text style={SIGNUP_REDIRECT_TEXT}>
           Already have an account?
@@ -131,5 +131,5 @@ export const MainMenu = observer(function MainMenu() {
   )
 })
 
-//on create game, how do I start capturing data from screen to screen, eventually creating one object or "game"?
-//on create game, make new thing
+// on create game, how do I start capturing data from screen to screen, eventually creating one object or "game"?
+// on create game, make new thing

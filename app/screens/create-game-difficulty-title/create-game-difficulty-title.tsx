@@ -1,14 +1,16 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 
+import { PrimaryParamList } from '../../navigators/main-navigator'
+
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
+  backgroundColor: color.palette.primaryBackground,
   paddingHorizontal: spacing[4],
 }
 
@@ -123,11 +125,26 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
 
 export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficulty() {
   const navigation = useNavigation()
+
+
+  const [model, setModel] = useState({
+    title: '',
+    pairCount: -1
+  })
+
+  const setTitle = title => setModel({ ...model, title })
+  const setPairCount = pairCount => () => setModel({ ...model, pairCount })
+
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
 
-  const goAssignMatches = () => navigation.navigate("assign_matches")
-  const goMainMenu = () => navigation.navigate("main_menu")
+
+  const goAssignMatches = () => navigation.navigate('assignMatches', model )
+  // const goMainMenu = () => navigation.navigate("main_menu")
+
+  const isDisabled = () => {
+    return model.title.trim().length <= 0 && model.pairCount <= 0
+  }
 
   return (
     <View testID="CreateGameDifficultyTitleScreen" style={FULL}>
@@ -139,40 +156,47 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
           style={HEADER}
         />
 
+        <Text>{ JSON.stringify(model) }</Text>
+
         <View style={TITLE_FORM_CONTAINER}>
           <Text style={GAME_TITLE_DESCRIPTION}>Name your game:</Text>
 
-          <TextInput style={FORM_FIELD} placeholder="game title" autoCapitalize="none" />
+          <TextInput style={FORM_FIELD} value={model.title} onChangeText={setTitle} placeholder="game title" autoCapitalize="none" />
         </View>
 
         <View style={DIFFICULTY_BUTTONS_CONTAINER}>
-          <Button style={DIFFICULTY_BUTTONS} onPress={goMainMenu}>
+          <Button style={DIFFICULTY_BUTTONS} onPress={setPairCount(2)}>
+            <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>DEBUG</Text>
+            <Text style={DIFFICULTY_BUTTONS_SECONDARY_TEXT}>2 pairs</Text>
+          </Button>
+
+          <Button style={DIFFICULTY_BUTTONS} onPress={setPairCount(6)}>
             <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>1</Text>
             <Text style={DIFFICULTY_BUTTONS_SECONDARY_TEXT}>6 pairs</Text>
           </Button>
 
-          <Button style={DIFFICULTY_BUTTONS} onPress={goMainMenu}>
+          <Button style={DIFFICULTY_BUTTONS} onPress={setPairCount(10)}>
             <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>2</Text>
             <Text style={DIFFICULTY_BUTTONS_SECONDARY_TEXT}>10 pairs</Text>
           </Button>
 
-          <Button style={DIFFICULTY_BUTTONS} onPress={goMainMenu}>
+          <Button style={DIFFICULTY_BUTTONS} onPress={setPairCount(14)}>
             <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>3</Text>
             <Text style={DIFFICULTY_BUTTONS_SECONDARY_TEXT}>14 pairs</Text>
           </Button>
         </View>
 
-        <Button style={NEXT_BUTTON} onPress={goAssignMatches}>
+        <Button style={NEXT_BUTTON} onPress={goAssignMatches} disabled={isDisabled()}>
           <Text style={NEXT_BUTTON_TEXT}>NEXT</Text>
         </Button>
         {/* FOR DEVVING */}
-        <Text style={SIGNUP_REDIRECT_TEXT}>
+        {/* <Text style={SIGNUP_REDIRECT_TEXT}>
           main menu
           <Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}>
             {" "}
             menu{" "}
           </Text>
-        </Text>
+        </Text> */}
       </Screen>
     </View>
   )

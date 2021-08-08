@@ -1,11 +1,13 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, SafeAreaView, TouchableOpacity } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 import { palette } from "../../theme/palette"
+
+import { AssignMatchesProps } from '../../navigators/main-navigator'
 
 import { DummyModal } from "./dummy-modal"
 // import { DummyRow } from "./dummy-row"
@@ -138,44 +140,81 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
   textDecorationLine: "underline",
 }
 
-const DATA = [
-  {
-    id: "1",
-    title: "First Item",
-  },
-  {
-    id: "2",
-    title: "Second Item",
-  },
-  {
-    id: "3",
-    title: "Third Item",
-  },
-]
+type PairType = {  question: string, answer: string } 
+type ModelType = {
+  pairs: PairType[]
+}
 
-//select
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
-    <Button>
-      <Text>play</Text>
-    </Button>
-    <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
-    {/* <Button>
-        <Text>select</Text>
-      </Button> */}
-  </TouchableOpacity>
-)
+type PairingProps = { pair: PairType, setPair: (pair: PairType) => unknown }
+const Pairing = (props: PairingProps) => {
+  const { pair, setPair } = props
+  const [modalVisible, setModalVisible] = useState(false)
+  const [target, setTarget] = useState<'question' | 'answer' | undefined>()
 
-export const AssignMatches = observer(function AssignMatches() {
+  const showModal = (dataType: 'question' | 'answer') => () => {
+    // modal already open
+    if( !target ){
+      setTarget(dataType)
+      setModalVisible(true)
+    }
+  }
+
+  const modalClose = (item: any) => {
+    setModalVisible(false)
+    if( target === 'question' ){
+      const question = item.title
+      setPair({ ...pair, question })
+      setTarget(undefined)
+    }else if (target === 'answer'){
+      const answer = item.title
+      setPair({ ...pair, answer })
+      setTarget(undefined)
+    }
+  }
+
+  return (
+    <View style={MATCH_ASSIGN_BUTTONS_CONTAINER}>
+      <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('question')}>
+        <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+          { pair.question || 'Q?' }
+        </Text>
+      </Button>
+
+      <View style={BTN_CONNECTOR}></View>
+
+      <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('answer')}>
+        <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+          { pair.answer || 'A?' }
+        </Text>
+      </Button>
+      {modalVisible ? <DummyModal  closeModal={modalClose} /> : null}
+    </View>
+  )
+}
+
+export const AssignMatches = observer(function AssignMatches(props: AssignMatchesProps) {
   const navigation = useNavigation()
+
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
 
   const goMainMenu = () => navigation.navigate("main_menu")
 
+  
+  const defaultModel: ModelType = {pairs: []} 
+  for(let i = 0; i < props.route.params.pairCount; i++){
+    defaultModel.pairs.push({ question: '', answer: ''})
+  }
+
+  const [model, setModel] = useState<ModelType>(defaultModel)
+  const pairSetter = (idx: number) => (pair: PairType) => {
+    model.pairs[idx] = pair
+    setModel({ ...model })
+  }
+
   const [modalVisible, setModalVisible] = useState(false)
 
-  //change some styling when tapping on the rendered list item --- using state
+  // change some styling when tapping on the rendered list item --- using state
   const [selectedTitle, setSelectedTitle] = useState(null)
 
   const [selectedId, setSelectedId] = useState(null)
@@ -213,49 +252,12 @@ export const AssignMatches = observer(function AssignMatches() {
           />
 
           <View style={TITLE_FORM_CONTAINER}>
-            <Text style={GAME_TITLE_AND_DIFFICULTY}>Animal Match - lvl 1</Text>
+            <Text style={GAME_TITLE_AND_DIFFICULTY} text={ props.route.params.title } />
           </View>
 
-          <View style={MATCH_ASSIGN_BUTTONS_CONTAINER}>
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(true)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
-                {buttonOneObject ? buttonOneObject.title : "ROAR"}
-              </Text>
-            </Button>
-
-            <View style={BTN_CONNECTOR}></View>
-
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>LION</Text>
-            </Button>
-          </View>
-
-          <View style={MATCH_ASSIGN_BUTTONS_CONTAINER}>
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(true)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
-                {buttonOneObject ? buttonOneObject.title : "MOO"}
-              </Text>
-            </Button>
-
-            <View style={BTN_CONNECTOR}></View>
-
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>COW</Text>
-            </Button>
-          </View>
-
-          <View style={MATCH_ASSIGN_BUTTONS_CONTAINER}>
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(true)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
-                {buttonOneObject ? buttonOneObject.title : "QUACK"}
-              </Text>
-            </Button>
-
-            <View style={BTN_CONNECTOR}></View>
-
-            <Button style={MATCH_ASSIGN_BUTTONS} onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>DUCK</Text>
-            </Button>
+          <View>
+            {/* { model.pairs.map( (pair: PairType, idx: number) =>  <Text key={idx}> {idx} {pair.question} {pair.answer} </Text> ) }  */}
+            { model.pairs.map( (pair: PairType, idx: number) =>  <Pairing key={idx} pair={pair} setPair={pairSetter(idx)} /> ) } 
           </View>
 
           {/* dont use this component yet */}
