@@ -133,7 +133,10 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
   })
 
   const setTitle = title => setModel({ ...model, title })
-  const setPairCount = pairCount => () => setModel({ ...model, pairCount })
+  const setPairCount = pairCount => () => {
+    setModel({ ...model, pairCount })
+    goAssignMatches()
+  }
 
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
@@ -186,9 +189,9 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
           </Button>
         </View>
 
-        <Button style={NEXT_BUTTON} onPress={goAssignMatches} disabled={isDisabled()}>
+        {/* <Button style={NEXT_BUTTON} onPress={goAssignMatches} disabled={isDisabled()}>
           <Text style={NEXT_BUTTON_TEXT}>NEXT</Text>
-        </Button>
+        </Button> */}
         {/* FOR DEVVING */}
         {/* <Text style={SIGNUP_REDIRECT_TEXT}>
           main menu

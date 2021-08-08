@@ -3,10 +3,11 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const SoundMatchPairModel = types.model("SoundMatchPair").props({
   id: types.identifierNumber,
   questionText: types.string,
-  questionSound: types.string,
+  questionSound: types.maybeNull(types.string),
   answerText: types.string,
-  answerSound: types.string
+  answerSound: types.maybeNull(types.string)
 })
+
 
 export const SoundMatchGameModel = types.model("SoundMatchGame").props({
   id: types.identifierNumber,

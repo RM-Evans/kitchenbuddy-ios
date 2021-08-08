@@ -98,12 +98,18 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   // }
 
   const toggleOption = (item: any) => {
-    const idx = selected.findIndex((e) => e.id === item.id)
-    if (idx >= 0) {
-      setSelected([])
-    } else {
-      setSelected([item])
-    }
+    // we can just do this now that it's single
+    props.closeModal(item)
+    
+    /* If we wanted them to CONFIRM */
+    // const idx = selected.findIndex((e) => e.id === item.id)
+    // if (idx >= 0) {
+    //   setSelected([])
+    // } else {
+    //   setSelected([item])
+    // }
+
+    
   }
 
   const renderItem = ({ item }) => {
@@ -126,7 +132,6 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   }
 
   const doClose = (item: any) => {
-    console.log("blah", selected)
     if (selected.length !== 1) {
       alert("Please select only 1 option")
       return

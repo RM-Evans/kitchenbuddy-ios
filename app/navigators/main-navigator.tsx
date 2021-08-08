@@ -47,7 +47,7 @@ export type PrimaryParamList = {
   // choose_title: undefined
   // choose_title_difficulty: undefined
   assignMatches: { title: string, pairCount: number }
-  // game_library: undefined
+  gameLibrary: undefined
   // individual_game: undefined
 }
 
@@ -75,7 +75,7 @@ export function MainNavigator() {
       {/* <Stack.Screen name="choose_title" component={ChooseTitle} /> */}
       <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />
       <Stack.Screen name="assignMatches" component={AssignMatches} />
-      {/* <Stack.Screen name="game_library" component={GameLibrary} /> */}
+      <Stack.Screen name="gameLibrary" component={GameLibrary} />
       {/* <Stack.Screen name="individual_game" component={GameIndividual} /> */}
     </Stack.Navigator>
   )

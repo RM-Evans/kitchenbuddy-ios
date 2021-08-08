@@ -78,7 +78,7 @@ export const MainMenu = observer(function MainMenu() {
 
   const goLogin = () => navigation.navigate("login")
 
-  const goGameLibrary = () => navigation.navigate("game_library")
+  const goGameLibrary = () => navigation.navigate("gameLibrary")
 
   const goChooseDifficulty = () => navigation.navigate("choose_difficulty")
 

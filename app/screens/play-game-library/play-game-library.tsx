@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import {
   View,
   ViewStyle,
@@ -15,6 +15,7 @@ import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../
 import { color, spacing, typography } from "../../theme"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { palette } from "../../theme/palette"
+import { useStores } from "../../models"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -74,60 +75,60 @@ const FLATLIST_SEPARATOR: ViewStyle = {
   backgroundColor: color.palette.darkBlue,
 }
 
-const DUMMYGAMEDATA = [
-  {
-    id: "1",
-    title: "first game",
-    difficulty: "2",
-  },
-  {
-    id: "2",
-    title: "second game",
-    difficulty: "3",
-  },
-  {
-    id: "3",
-    title: "third game",
-    difficulty: "2",
-  },
-  {
-    id: "4",
-    title: "fourth game",
-    difficulty: "1",
-  },
-  {
-    id: "5",
-    title: "fifth game",
-    difficulty: "2",
-  },
-  {
-    id: "6",
-    title: "sixth game",
-    difficulty: "1",
-  },
-  {
-    id: "7",
-    title: "seventh game",
-    difficulty: "2",
-  },
-  {
-    id: "8",
-    title: "eigth game",
-    difficulty: "2",
-  },
-  {
-    id: "9",
-    title: "ninth game",
-    difficulty: "3",
-  },
-  {
-    id: "10",
-    title: "tenth game",
-    difficulty: "2",
-  },
-]
+// const DUMMYGAMEDATA = [
+//   {
+//     id: "1",
+//     title: "first game",
+//     difficulty: "2",
+//   },
+//   {
+//     id: "2",
+//     title: "second game",
+//     difficulty: "3",
+//   },
+//   {
+//     id: "3",
+//     title: "third game",
+//     difficulty: "2",
+//   },
+//   {
+//     id: "4",
+//     title: "fourth game",
+//     difficulty: "1",
+//   },
+//   {
+//     id: "5",
+//     title: "fifth game",
+//     difficulty: "2",
+//   },
+//   {
+//     id: "6",
+//     title: "sixth game",
+//     difficulty: "1",
+//   },
+//   {
+//     id: "7",
+//     title: "seventh game",
+//     difficulty: "2",
+//   },
+//   {
+//     id: "8",
+//     title: "eigth game",
+//     difficulty: "2",
+//   },
+//   {
+//     id: "9",
+//     title: "ninth game",
+//     difficulty: "3",
+//   },
+//   {
+//     id: "10",
+//     title: "tenth game",
+//     difficulty: "2",
+//   },
+// ]
 
-//flatlist separator
+// flatlist separator
 const flatlistSeparator = () => {
   return <View style={FLATLIST_SEPARATOR} />
 }
@@ -135,31 +136,37 @@ const flatlistSeparator = () => {
 export const GameLibrary = observer(function GameLibrary() {
   const navigation = useNavigation()
 
-  //{ for use in header
+  const { soundMatchStore } = useStores()
+
+  // { for use in header
   const goBack = () => navigation.goBack()
 
   const goLogin = () => navigation.navigate("login")
-  //for use in header }
+  // for use in header }
 
   const goIndividualGame = () => navigation.navigate("individual_game")
 
   const goMainMenu = () => navigation.navigate("main_menu")
 
-  //onpress will need to go to page with data unique to the list item object
+  // onpress will need to go to page with data unique to the list item object
 
-  //create list <Item>
-  const Item = ({ item }) => (
+  // create list <Item>
+  const Item = ({ item: { item } }) => (
     <TouchableOpacity onPress={goIndividualGame}>
       <View style={GAME_LIBRARY_FLATLIST_ITEM}>
-        <Text style={GAME_LIBRARY_FLATLIST_ITEM_DIFFICULTY}>lvl. {item.difficulty}</Text>
+        <Text style={GAME_LIBRARY_FLATLIST_ITEM_DIFFICULTY}>Q: {item.questions}</Text>
         <Text style={GAME_LIBRARY_FLATLIST_ITEM_TITLE}>{item.title}</Text>
         {/* <Text text=">"></Text> */}
       </View>
     </TouchableOpacity>
   )
 
-  //render dummy list <Item>
-  const RENDERDUMMYITEM = ({ item }) => <Item item={item} />
+  const DUMMYGAMEDATA = soundMatchStore.games.map(g => ({
+    id: g.id, 
+    title: g.title,
+    questions: g.pairs.length,
+    difficulty: 'HARD'
+  }))
 
   return (
     <View testID="GameLibrary" style={FULL}>
@@ -177,7 +184,7 @@ export const GameLibrary = observer(function GameLibrary() {
         <View style={GAME_LIBRARY_FLATLIST_CONTAINER}>
           <FlatList
             data={DUMMYGAMEDATA}
-            renderItem={RENDERDUMMYITEM}
+            renderItem={ (item) => <Item item={item} />}
             keyExtractor={(item) => item.id}
             ItemSeparatorComponent={flatlistSeparator}
           />

@@ -1,24 +1,37 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { getSnapshot, Instance, SnapshotOut, types } from "mobx-state-tree"
 // import { CharacterModel, CharacterSnapshot } from "../character/character"
 // import { CharacterApi } from "../../services/api/character-api"
-// import { withEnvironment } from "../extensions/with-environment"
+import { withEnvironment } from "../extensions/with-environment"
 
-import { SoundMatchGameModel } from "./sound-match-game"
+import { SoundMatchGameModel, SoundMatchPairModel, SoundMatchGameSnapshot, SoundMatchPairSnapshot, SoundMatchPair } from "./sound-match-game"
 /**
  * Example store containing Rick and Morty characters
  */
+
+export type SoundMatchPairs = {questionText: string, answerText: string}[]
+
+let idx = 1
+
 export const SoundMatchStoreModel = types
   .model("SoundMatchStore")
   .props({
     games: types.optional(types.array(SoundMatchGameModel), []),
   })
-  // .extend(withEnvironment)
+  .extend(withEnvironment)
   .actions((self) => ({
-    // saveCharacters: (characterSnapshots: CharacterSnapshot[]) => {
-    //   self.characters.replace(characterSnapshots)
+    // saveCharacters: (snapshots: SoundMatchGameSnapshot[]) => {
+    //   self.games.replace(snapshots)
     // },
   }))
   .actions((self) => ({
+    createGame: (title: string, pairings: SoundMatchPairs ) => {
+      console.log('create the game', title, pairings)
+      const pairs = pairings.map(p => SoundMatchPairModel.create({ id: idx++, ...p }).id)
+      const game = SoundMatchGameModel.create({ id: idx++, title, pairs })
+      self.games.push(game)
+      console.log(self.games)
+
+    }
     // getCharacters: async () => {
     //   const characterApi = new CharacterApi(self.environment.api)
     //   const result = await characterApi.getCharacters()
