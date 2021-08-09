@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import {
   View,
   ViewStyle,
@@ -20,6 +20,11 @@ const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
 const TEXT: TextStyle = {
   ...PRIMARYTEXTCOLOR,
   fontFamily: typography.primary,
+}
+
+const VIEW_STYLE = { 
+  paddingTop: 50, 
+  backgroundColor: color.palette.skyBlue
 }
 
 const GAME_TITLE_AND_DIFFICULTY: TextStyle = {
@@ -47,19 +52,23 @@ const LIST_CARD: ViewStyle = {
 const DATA = [
   {
     id: "1",
-    title: "First Item!",
+    title: "Lion - Roaring",
   },
   {
     id: "2",
-    title: "Second Item!",
+    title: "Lion - Word",
   },
   {
     id: "3",
-    title: "Third Item",
+    title: "Cow - Mooing",
+  },
+  {
+    id: "4",
+    title: "Cow - Word",
   },
 ]
 
-//select
+// select
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
     <Button>
@@ -77,15 +86,30 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   const [selected, setSelected] = useState<any[]>([])
 
   // push a item onto our array of selected, or remove it
+  // const toggleOption = (item: any) => {
+  //   const idx = selected.findIndex((e) => e.id === item.id)
+  //   if (idx >= 0) {
+  //     const items = [...selected]
+  //     items.splice(idx, 1)
+  //     setSelected(items)
+  //   } else {
+  //     setSelected([...selected, item])
+  //   }
+  // }
+
   const toggleOption = (item: any) => {
-    const idx = selected.findIndex((e) => e.id === item.id)
-    if (idx >= 0) {
-      let items = [...selected]
-      items.splice(idx, 1)
-      setSelected(items)
-    } else {
-      setSelected([...selected, item])
-    }
+    // we can just do this now that it's single
+    props.closeModal(item)
+    
+    /* If we wanted them to CONFIRM */
+    // const idx = selected.findIndex((e) => e.id === item.id)
+    // if (idx >= 0) {
+    //   setSelected([])
+    // } else {
+    //   setSelected([item])
+    // }
+
+    
   }
 
   const renderItem = ({ item }) => {
@@ -108,7 +132,6 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   }
 
   const doClose = (item: any) => {
-    console.log("blah", selected)
     if (selected.length !== 1) {
       alert("Please select only 1 option")
       return
@@ -128,7 +151,7 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
         //   setModalVisible(!modalVisible);
         // }}
       >
-        <View>
+        <View style={ VIEW_STYLE }>
           <FlatList
             data={DATA}
             renderItem={renderItem}

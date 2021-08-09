@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
