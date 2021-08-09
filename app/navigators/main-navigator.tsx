@@ -5,7 +5,7 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
+import { createStackNavigator, StackScreenProps } from "@react-navigation/stack"
 import {
   WelcomeScreen,
   DemoScreen,
@@ -40,8 +40,9 @@ export type PrimaryParamList = {
   demo: undefined
   demoList: undefined
   login: undefined
-  password_recovering: undefined
+  // password_recovering: undefined
   signup: undefined
+<<<<<<< HEAD
   password_recovery: undefined
   main_menu: undefined
   choose_difficulty: undefined
@@ -51,10 +52,22 @@ export type PrimaryParamList = {
   game_library: undefined
   individual_game: undefined
   GeneratedGame: undefined
+=======
+  // password_recovery: undefined
+  // main_menu: undefined
+  // choose_difficulty: undefined
+  // choose_title: undefined
+  // choose_title_difficulty: undefined
+  assignMatches: { title: string, pairCount: number }
+  gameLibrary: undefined
+  // individual_game: undefined
+>>>>>>> edd70f37d834441f54556cadfe919e7bf9b81946
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createStackNavigator<PrimaryParamList>()
+
+export type AssignMatchesProps = StackScreenProps<PrimaryParamList, 'assignMatches'>;
 
 export function MainNavigator() {
   return (
@@ -69,15 +82,21 @@ export function MainNavigator() {
       <Stack.Screen name="demoList" component={DemoListScreen} />
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="signup" component={SignupScreen} />
-      <Stack.Screen name="password_recovery" component={PasswordRecoveryScreen} />
+      {/* <Stack.Screen name="password_recovery" component={PasswordRecoveryScreen} /> */}
       <Stack.Screen name="main_menu" component={MainMenu} />
-      <Stack.Screen name="choose_difficulty" component={ChooseDifficulty} />
-      <Stack.Screen name="choose_title" component={ChooseTitle} />
+      {/* <Stack.Screen name="choose_difficulty" component={ChooseDifficulty} /> */}
+      {/* <Stack.Screen name="choose_title" component={ChooseTitle} /> */}
       <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />
+<<<<<<< HEAD
       <Stack.Screen name="assign_matches" component={AssignMatches} />
       <Stack.Screen name="game_library" component={GameLibrary} />
       <Stack.Screen name="individual_game" component={GameIndividual} />
       <Stack.Screen name="GeneratedGame" component={GeneratedGame} />
+=======
+      <Stack.Screen name="assignMatches" component={AssignMatches} />
+      <Stack.Screen name="gameLibrary" component={GameLibrary} />
+      {/* <Stack.Screen name="individual_game" component={GameIndividual} /> */}
+>>>>>>> edd70f37d834441f54556cadfe919e7bf9b81946
     </Stack.Navigator>
   )
 }

@@ -10,7 +10,7 @@ const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
-  //center text to middle of screen
+  // center text to middle of screen
   flex: 1,
   justifyContent: "center",
   alignContent: "center",
@@ -33,7 +33,7 @@ const TITLE: TextStyle = {
   ...BOLD,
   fontSize: 36,
   lineHeight: 38,
-  backgroundColor: "#ffff1"
+  backgroundColor: "#fffff1"
 }
 
 
