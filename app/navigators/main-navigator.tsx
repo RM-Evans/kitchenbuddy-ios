@@ -20,6 +20,7 @@ import {
   AssignMatches,
   GameLibrary,
   GameIndividual,
+  GeneratedGame,
 } from "../screens"
 
 /**
@@ -49,6 +50,7 @@ export type PrimaryParamList = {
   assign_matches: undefined
   game_library: undefined
   individual_game: undefined
+  GeneratedGame: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -75,6 +77,7 @@ export function MainNavigator() {
       <Stack.Screen name="assign_matches" component={AssignMatches} />
       <Stack.Screen name="game_library" component={GameLibrary} />
       <Stack.Screen name="individual_game" component={GameIndividual} />
+      <Stack.Screen name="GeneratedGame" component={GeneratedGame} />
     </Stack.Navigator>
   )
 }

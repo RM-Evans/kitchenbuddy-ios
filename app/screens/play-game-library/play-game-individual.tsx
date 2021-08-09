@@ -93,6 +93,8 @@ export const GameIndividual = observer(function GameIndividual() {
 
   const goLogin = () => navigation.navigate("login")
 
+  const goGeneratedGame = () => navigation.navigate("GeneratedGame")
+
   const [playerCount, setPlayerCount] = useState(null)
 
   // TODO: on press, setPlayerCount ----> if playerCount === button, change the style sheet
@@ -153,6 +155,12 @@ export const GameIndividual = observer(function GameIndividual() {
         <View style={GAME_SETUP_CONTAINER}>
           <Button onPress={() => setPlayerCount} />
           <Button onPress={() => setPlayerCount} />
+
+          <Button
+            onPress={goGeneratedGame}
+            textStyle={{ ...TEXT, ...BOLD, fontSize: 30 }}
+            text="PLAY GAME"
+          />
         </View>
 
         {/* FOR DEVVING
