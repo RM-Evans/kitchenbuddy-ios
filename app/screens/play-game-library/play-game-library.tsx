@@ -34,8 +34,8 @@ const GAME_LIBRARY_PAGE_TITLE_CONTAINER: ViewStyle = {
   flexDirection: "row",
   justifyContent: "center",
 
-  borderColor: color.palette.angry,
-  borderWidth: 2,
+  //   borderColor: color.palette.angry,
+  //   borderWidth: 2,
 
   paddingHorizontal: spacing[6],
   paddingBottom: 20,
@@ -48,8 +48,8 @@ const GAME_LIBRARY_PAGE_TITLE: TextStyle = {
 }
 
 const GAME_LIBRARY_FLATLIST_CONTAINER: ViewStyle = {
-  borderColor: color.palette.angry,
-  borderWidth: 2,
+  //   borderColor: color.palette.angry,
+  //   borderWidth: 2,
 }
 
 const GAME_LIBRARY_FLATLIST_ITEM: ViewStyle = {
@@ -161,18 +161,18 @@ export const GameLibrary = observer(function GameLibrary() {
     </TouchableOpacity>
   )
 
-  const DUMMYGAMEDATA = soundMatchStore.games.map(g => ({
-    id: g.id, 
+  const DUMMYGAMEDATA = soundMatchStore.games.map((g) => ({
+    id: g.id,
     title: g.title,
     questions: g.pairs.length,
-    difficulty: 'HARD'
+    difficulty: "HARD",
   }))
 
   return (
     <View testID="GameLibrary" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
         <Header
-          style={{ borderColor: palette.angry, borderWidth: 2 }}
+          //   style={{ borderColor: palette.angry, borderWidth: 2 }}
           leftIcon={"back"}
           onLeftPress={goBack}
         />
@@ -184,7 +184,7 @@ export const GameLibrary = observer(function GameLibrary() {
         <View style={GAME_LIBRARY_FLATLIST_CONTAINER}>
           <FlatList
             data={DUMMYGAMEDATA}
-            renderItem={ (item) => <Item item={item} />}
+            renderItem={(item) => <Item item={item} />}
             keyExtractor={(item) => item.id}
             ItemSeparatorComponent={flatlistSeparator}
           />

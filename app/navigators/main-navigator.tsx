@@ -50,6 +50,7 @@ export type PrimaryParamList = {
   assignMatches: { title: string; pairCount: number }
   gameLibrary: undefined
   // individual_game: undefined
+  generatedGame: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -78,6 +79,7 @@ export function MainNavigator() {
       <Stack.Screen name="assignMatches" component={AssignMatches} />
       <Stack.Screen name="gameLibrary" component={GameLibrary} />
       {/* <Stack.Screen name="individual_game" component={GameIndividual} /> */}
+      <Stack.Screen name="generatedGame" component={GeneratedGame} />
     </Stack.Navigator>
   )
 }
