@@ -49,14 +49,16 @@ export type PrimaryParamList = {
   // choose_title_difficulty: undefined
   assignMatches: { title: string; pairCount: number }
   gameLibrary: undefined
-  // individual_game: undefined
-  generatedGame: undefined
+  setupGame: { gameId: number }
+  playGame: { gameId: number }
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createStackNavigator<PrimaryParamList>()
 
 export type AssignMatchesProps = StackScreenProps<PrimaryParamList, "assignMatches">
+export type SetupGameProps = StackScreenProps<PrimaryParamList, "setupGame">
+export type PlayGameProps = StackScreenProps<PrimaryParamList, "playGame">
 
 export function MainNavigator() {
   return (
@@ -78,8 +80,8 @@ export function MainNavigator() {
       <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />
       <Stack.Screen name="assignMatches" component={AssignMatches} />
       <Stack.Screen name="gameLibrary" component={GameLibrary} />
-      {/* <Stack.Screen name="individual_game" component={GameIndividual} /> */}
-      <Stack.Screen name="generatedGame" component={GeneratedGame} />
+      <Stack.Screen name="setupGame" component={GameIndividual} />
+      <Stack.Screen name="playGame" component={GeneratedGame} />
     </Stack.Navigator>
   )
 }

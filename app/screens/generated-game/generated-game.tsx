@@ -1,10 +1,14 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
+import { PlayGameProps } from "../../navigators"
+import { useStores } from "../../models"
+
+import { SoundMatchGame } from '../../models/sound-match/sound-match-game'
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -62,6 +66,11 @@ const DIFFICULTY_BUTTONS: ViewStyle = {
   borderColor: color.palette.darkBlue,
 }
 
+const ACTIVATED_BUTTONS: ViewStyle = {
+  ...DIFFICULTY_BUTTONS,
+  backgroundColor: color.palette.angry,
+}
+
 const HEADER: TextStyle = {
   color: color.palette.black,
 
@@ -70,13 +79,45 @@ const HEADER: TextStyle = {
   paddingHorizontal: 0,
 }
 
-export const GeneratedGame = observer(function GeneratedGame() {
+
+export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProps) {
+
+  const { gameId } = props.route.params
+  const { soundMatchStore } = useStores()
+  
+  const game = soundMatchStore.getGame(gameId)
+  
   const navigation = useNavigation()
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
 
+  const [activated, setActivated] = useState<any>()
+
+
+  const questions: any[] = [
+    { id: 1, partner: 2 },
+    { id: 2, partner: 1 },
+    { id: 3, partner: 4 },
+    { id: 4, partner: 3 },
+  ]
+
+  const pressed = (q: any) => {
+    if( activated ){
+      if( activated.partner === q.id) {
+        alert('yes')
+      }else{
+        alert('no')
+      }
+      setActivated(null)
+    }else{
+      setActivated(q)
+    }
+  }
+
   // const goAssignMatches = () => navigation.navigate("assign_matches")
   // const goMainMenu = () => navigation.navigate("main_menu")
+
+
 
   return (
     <View testID="GeneratedGameScreen" style={FULL}>
@@ -89,7 +130,7 @@ export const GeneratedGame = observer(function GeneratedGame() {
         />
 
         <View style={GAME_TITLE_CONTAINER}>
-          <Text style={GAME_TITLE}>ANIMAL MATCH</Text>
+          <Text style={GAME_TITLE}>{ game.title }</Text>
         </View>
         {/* 
         <View style={PLAYER_SCORE_CONTAINER}>
@@ -98,30 +139,19 @@ export const GeneratedGame = observer(function GeneratedGame() {
         {/* turns */}
 
         <View style={MATCHING_PIECES_CONTAINER}>
-          <View style={MATCHING_PIECES_ROW}>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-          </View>
+          
+            { questions.map(q =>
+              
+                <Button 
+                  key={q.id} 
+                  onPress={() => pressed(q)} 
+                  style={ activated && activated.id === q.id ? ACTIVATED_BUTTONS : DIFFICULTY_BUTTONS}
+                  >
 
-          <View style={MATCHING_PIECES_ROW}>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-          </View>
-
-          <View style={MATCHING_PIECES_ROW}>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-          </View>
-
-          <View style={MATCHING_PIECES_ROW}>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-          </View>
-
-          <View style={MATCHING_PIECES_ROW}>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-            <Button style={DIFFICULTY_BUTTONS}></Button>
-          </View>
+                </Button>
+              
+            )}
+          
         </View>
       </Screen>
     </View>

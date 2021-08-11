@@ -138,13 +138,17 @@ export const GameLibrary = observer(function GameLibrary() {
 
   const { soundMatchStore } = useStores()
 
+  // soundMatchStore.deleteEverything()
+
   // { for use in header
   const goBack = () => navigation.goBack()
 
   const goLogin = () => navigation.navigate("login")
   // for use in header }
 
-  const goIndividualGame = () => navigation.navigate("individual_game")
+  const goIndividualGame = (item) => {
+    navigation.navigate("setupGame", { gameId: item.id })
+  }
 
   const goMainMenu = () => navigation.navigate("main_menu")
 
@@ -152,7 +156,7 @@ export const GameLibrary = observer(function GameLibrary() {
 
   // create list <Item>
   const Item = ({ item: { item } }) => (
-    <TouchableOpacity onPress={goIndividualGame}>
+    <TouchableOpacity onPress={() => goIndividualGame(item)}>
       <View style={GAME_LIBRARY_FLATLIST_ITEM}>
         <Text style={GAME_LIBRARY_FLATLIST_ITEM_DIFFICULTY}>Q: {item.questions}</Text>
         <Text style={GAME_LIBRARY_FLATLIST_ITEM_TITLE}>{item.title}</Text>
@@ -185,7 +189,7 @@ export const GameLibrary = observer(function GameLibrary() {
           <FlatList
             data={DUMMYGAMEDATA}
             renderItem={(item) => <Item item={item} />}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => `${item.id}-${Math.random()}` }
             ItemSeparatorComponent={flatlistSeparator}
           />
         </View>

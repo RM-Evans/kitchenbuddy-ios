@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-//TextInput HOC?
+// TextInput HOC?
 import { View, ViewStyle, TextStyle, ImageStyle, SafeAreaView, StyleSheet } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 import { palette } from "../../theme/palette"
+import { SetupGameProps } from "../../navigators"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -49,9 +50,6 @@ const GAME_DESCRIPTION: TextStyle = {
 const GAME_SETUP_CONTAINER: ViewStyle = {
   //   alignItems: "center",
 
-  borderColor: color.palette.angry,
-  borderWidth: 2,
-
   marginTop: 30,
 
   paddingHorizontal: spacing[6],
@@ -67,14 +65,14 @@ const GAME_SETUP_CONTAINER: ViewStyle = {
 // }
 
 const SELECTED_PLAYER_COUNT = StyleSheet.create({
-  notSelected: {
-    height: 40,
-    backgroundColor: color.palette.skyBlue,
-    borderRadius: 5,
-    padding: 10,
-  },
   isSelected: {
     backgroundColor: color.palette.angry,
+  },
+  notSelected: {
+    backgroundColor: color.palette.skyBlue,
+    borderRadius: 5,
+    height: 40,
+    padding: 10,
   },
 })
 
@@ -86,14 +84,18 @@ const DUMMYGAMEDATA = {
     "This is an educational game for young children to match animal sounds with the spoken name of the correlating animal",
 }
 
-export const GameIndividual = observer(function GameIndividual() {
+export const GameIndividual = observer(function GameIndividual(props: SetupGameProps) {
   const navigation = useNavigation()
+
+  const { gameId } = props.route.params
 
   const goBack = () => navigation.goBack()
 
   const goLogin = () => navigation.navigate("login")
 
-  const goGeneratedGame = () => navigation.navigate("GeneratedGame")
+  const goGeneratedGame = () => {
+    navigation.navigate("playGame", { gameId })
+  }
 
   const [playerCount, setPlayerCount] = useState(null)
 
@@ -142,7 +144,6 @@ export const GameIndividual = observer(function GameIndividual() {
     <View testID="GameIndividual" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
         <Header
-          style={{ borderColor: palette.angry, borderWidth: 2 }}
           leftIcon={"back"}
           onLeftPress={goBack}
         />
@@ -153,9 +154,6 @@ export const GameIndividual = observer(function GameIndividual() {
         </View>
 
         <View style={GAME_SETUP_CONTAINER}>
-          <Button onPress={() => setPlayerCount} />
-          <Button onPress={() => setPlayerCount} />
-
           <Button
             onPress={goGeneratedGame}
             textStyle={{ ...TEXT, ...BOLD, fontSize: 30 }}

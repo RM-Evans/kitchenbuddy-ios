@@ -16,6 +16,7 @@ export const SoundMatchStoreModel = types
   .model("SoundMatchStore")
   .props({
     games: types.optional(types.array(SoundMatchGameModel), []),
+    pairs: types.optional(types.array(SoundMatchPairModel), []),
   })
   .extend(withEnvironment)
   .actions((self) => ({
@@ -27,10 +28,17 @@ export const SoundMatchStoreModel = types
     createGame: (title: string, pairings: SoundMatchPairs ) => {
       console.log('create the game', title, pairings)
       const pairs = pairings.map(p => SoundMatchPairModel.create({ id: idx++, ...p }).id)
+      self.pairs.concat(self.pairs, pairs)
       const game = SoundMatchGameModel.create({ id: idx++, title, pairs })
       self.games.push(game)
-      console.log(self.games)
-
+    },
+    getGame: (id: number) => {
+      const game = self.games.find(e => e.id === id)
+      return game
+    },
+    deleteEverything: () => {
+      self.games.replace([])
+      self.pairs.replace([])
     }
     // getCharacters: async () => {
     //   const characterApi = new CharacterApi(self.environment.api)
