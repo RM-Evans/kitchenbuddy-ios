@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 // TextInput HOC?
-import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
+import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView, Alert } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
+import { useStores } from "../../models"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -72,6 +73,39 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
 }
 
 export const MainMenu = observer(function MainMenu() {
+
+  const { soundMatchStore } = useStores()
+
+  const resetEverything = () => {
+    const result = Alert.alert(
+      'Delete Everything?',
+      'Are you sure you want to delete everything? This is intended for developers demonstrating.',
+      [{
+        text: "Confirm",
+        onPress: () => { 
+          soundMatchStore.deleteEverything()
+        },
+        style: "destructive",
+      },
+      {
+        text: "Cancel",
+        onPress: () => { 
+          console.log('cancelled delete')
+        },
+        style: "cancel",
+      }],
+      // {
+      //   cancelable: true,
+      //   onDismiss: () =>
+      //     Alert.alert(
+      //       "This alert was dismissed by tapping outside of the alert dialog."
+      //     ),
+      // }
+    )
+    console.log(result)
+    // soundMatchStore.deleteEverything()
+  }
+
   const navigation = useNavigation()
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
@@ -111,13 +145,11 @@ export const MainMenu = observer(function MainMenu() {
 
         {/* FOR DEVVING */}
 
-        {/* <Text style={SIGNUP_REDIRECT_TEXT}>
-          diff and title
-          <Text style={SIGNUP_REDIRECT_LINK} onPress={goChooseDifficultyAndTitle}>
-            {" "}
-            menu{" "}
+        <Text style={SIGNUP_REDIRECT_TEXT}>
+          <Text style={SIGNUP_REDIRECT_LINK} onPress={resetEverything}>
+            Delete all games and data (DEBUG)
           </Text>
-        </Text> */}
+        </Text>
 
         <Text style={SIGNUP_REDIRECT_TEXT}>
           Already have an account?

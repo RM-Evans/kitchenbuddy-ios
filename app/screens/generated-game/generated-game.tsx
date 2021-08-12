@@ -92,14 +92,28 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
   const goBack = () => navigation.goBack()
 
   const [activated, setActivated] = useState<any>()
+  
+  const [questions, setQuestions] = useState<any[]>()
+  
 
 
-  const questions: any[] = [
-    { id: 1, partner: 2 },
-    { id: 2, partner: 1 },
-    { id: 3, partner: 4 },
-    { id: 4, partner: 3 },
-  ]
+  if( !questions && game.pairs.length ){
+    const tmp: any[] = []
+    let qid = 0
+    game.pairs.forEach(e => {
+      const q : any = { id: qid++, text: e.questionText, sound: e.questionSound, type: 'question', sourceId: e.id}
+      const a : any = { id: qid++, text: e.answerText, sound: e.answerSound, type: 'answer', sourceId: e.id}
+      q.partner = a.id 
+      a.partner = q.id
+
+      tmp.push(q)
+      tmp.push(a)
+      // questions.splice(0, 0, [q, a])
+    })
+
+    setQuestions(shuffleArray(tmp))
+    console.log('init questions')
+  }
 
   const pressed = (q: any) => {
     if( activated ){
@@ -140,12 +154,13 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
 
         <View style={MATCHING_PIECES_CONTAINER}>
           
-            { questions.map(q =>
+            { questions && questions.map(q =>
               
                 <Button 
                   key={q.id} 
                   onPress={() => pressed(q)} 
                   style={ activated && activated.id === q.id ? ACTIVATED_BUTTONS : DIFFICULTY_BUTTONS}
+                  text={q.text}
                   >
 
                 </Button>
@@ -157,3 +172,23 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
     </View>
   )
 })
+
+
+function shuffleArray(array: any[]) {
+  let currentIndex = array.length
+  let randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
