@@ -9,8 +9,9 @@ export const palette = {
   angry: "#dd3333",
   deepPurple: "#5D2555",
   //kitchenbuddy palette
-  primaryBackground: '#F0E7DF',
+  primaryBackground: "#F0E7DF",
   lightOrange: "#F79D65",
-  skyBlue: '#5B85AA',
-  darkBlue: '#1E2139'
+  skyBlue: "#5B85AA",
+  darkBlue: "#1E2139",
+  btnGreen: "#0bd104",
 }
