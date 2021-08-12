@@ -120,22 +120,53 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
 
   const [activated, setActivated] = useState<any>()
 
-  const questions: any[] = [
-    { id: 1, partner: 2 },
-    { id: 2, partner: 1 },
-    { id: 3, partner: 4 },
-    { id: 4, partner: 3 },
-    { id: 5, partner: 6 },
-    { id: 6, partner: 5 },
-    { id: 7, partner: 8 },
-    { id: 8, partner: 7 },
-    { id: 9, partner: 10 },
-    { id: 10, partner: 9 },
-    { id: 11, partner: 12 },
-    { id: 12, partner: 11 },
-    // { id: 13, partner: 14 },
-    // { id: 14, partner: 13 },
-  ]
+  const [questions, setQuestions] = useState<any[]>()
+
+  // const questions: any[] = [
+  //   { id: 1, partner: 2 },
+  //   { id: 2, partner: 1 },
+  //   { id: 3, partner: 4 },
+  //   { id: 4, partner: 3 },
+  //   { id: 5, partner: 6 },
+  //   { id: 6, partner: 5 },
+  //   { id: 7, partner: 8 },
+  //   { id: 8, partner: 7 },
+  //   { id: 9, partner: 10 },
+  //   { id: 10, partner: 9 },
+  //   { id: 11, partner: 12 },
+  //   { id: 12, partner: 11 },
+  //   // { id: 13, partner: 14 },
+  //   // { id: 14, partner: 13 },
+  // ]
+  if (!questions && game.pairs.length) {
+    const tmp: any[] = []
+    let qid = 0
+    game.pairs.forEach((e) => {
+      const q: any = {
+        id: qid++,
+        text: e.questionText,
+        sound: e.questionSound,
+        type: "question",
+        sourceId: e.id,
+      }
+      const a: any = {
+        id: qid++,
+        text: e.answerText,
+        sound: e.answerSound,
+        type: "answer",
+        sourceId: e.id,
+      }
+      q.partner = a.id
+      a.partner = q.id
+
+      tmp.push(q)
+      tmp.push(a)
+      // questions.splice(0, 0, [q, a])
+    })
+
+    setQuestions(shuffleArray(tmp))
+    console.log("init questions")
+  }
 
   const pressed = (q: any) => {
     // const activatedButtonStyle = ACTIVATED_BUTTONS
@@ -194,15 +225,34 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
         </View> */}
         {/* turns */}
         <View style={MATCHING_PIECES_CONTAINER}>
-          {questions.map((q) => (
-            <Button
-              key={q.id}
-              onPress={() => pressed(q)}
-              style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : BUTTONS}
-            ></Button>
-          ))}
+          {questions &&
+            questions.map((q) => (
+              <Button
+                key={q.id}
+                onPress={() => pressed(q)}
+                style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : DIFFICULTY_BUTTONS}
+                text={q.text}
+              ></Button>
+            ))}
         </View>
       </Screen>
     </View>
   )
 })
+
+function shuffleArray(array: any[]) {
+  let currentIndex = array.length
+  let randomIndex
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+
+    // And swap it with the current element.
+    ;[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+  }
+
+  return array
+}
