@@ -6,7 +6,8 @@ import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 
-import { PrimaryParamList } from '../../navigators/main-navigator'
+import { PrimaryParamList } from "../../navigators/main-navigator"
+import { useEffect } from "react"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -123,27 +124,35 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
   textDecorationLine: "underline",
 }
 
+// const nextScreen = () => navigation.navigate("login")
+// const goMainMenu = () => navigation.navigate("main_menu")
+
 export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficulty() {
   const navigation = useNavigation()
 
-
   const [model, setModel] = useState({
-    title: '',
-    pairCount: -1
+    title: "",
+    pairCount: -1,
   })
 
-  const setTitle = title => setModel({ ...model, title })
-  const setPairCount = pairCount => () => {
+  const setTitle = (title) => setModel({ ...model, title })
+  const setPairCount = (pairCount) => () => {
     setModel({ ...model, pairCount })
-    goAssignMatches()
+    console.log(model)
   }
+  //SQUASHING "RENDERING WITHOUT pairCount VALUE" BUG
+  useEffect(() => {
+    if (model.pairCount > 1) {
+      goAssignMatches()
+      console.log("IT WORKED")
+    } else {
+      console.log("pair count didnt change")
+    }
+  }, [model.pairCount])
 
-  // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
 
-
-  const goAssignMatches = () => navigation.navigate('assignMatches', model )
-  // const goMainMenu = () => navigation.navigate("main_menu")
+  const goAssignMatches = () => navigation.navigate("assignMatches", model)
 
   const isDisabled = () => {
     return model.title.trim().length <= 0 && model.pairCount <= 0
@@ -159,12 +168,18 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
           style={HEADER}
         />
 
-        <Text>{ JSON.stringify(model) }</Text>
+        <Text>{JSON.stringify(model)}</Text>
 
         <View style={TITLE_FORM_CONTAINER}>
           <Text style={GAME_TITLE_DESCRIPTION}>Name your game:</Text>
 
-          <TextInput style={FORM_FIELD} value={model.title} onChangeText={setTitle} placeholder="game title" autoCapitalize="none" />
+          <TextInput
+            style={FORM_FIELD}
+            value={model.title}
+            onChangeText={setTitle}
+            placeholder="game title"
+            autoCapitalize="none"
+          />
         </View>
 
         <View style={DIFFICULTY_BUTTONS_CONTAINER}>

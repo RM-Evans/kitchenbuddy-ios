@@ -11,7 +11,7 @@
  */
 import "./i18n"
 import "./utils/ignore-warnings"
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Textarea } from "react"
 import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts" // expo
@@ -61,6 +61,9 @@ function App() {
   // color set in native by rootView's background color. You can replace
   // with your own loading component if you wish.
   if (!rootStore) return null
+
+  // RME: if you're broken before loading the app, run this
+  rootStore.soundMatchStore.deleteEverything()
 
   // otherwise, we're ready to render the app
   return (

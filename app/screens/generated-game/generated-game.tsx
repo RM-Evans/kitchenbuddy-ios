@@ -115,6 +115,18 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
   const game = soundMatchStore.getGame(gameId)
 
   const navigation = useNavigation()
+
+  try {
+    game.pairs[0]
+  } catch (err) {
+    navigation.navigate("main_menu")
+    return (
+      <View>
+        <Text>Failure! </Text>
+      </View>
+    )
+  }
+
   // const nextScreen = () => navigation.navigate("login")
   const goBack = () => navigation.goBack()
 
@@ -209,16 +221,10 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
   return (
     <View testID="GeneratedGameScreen" style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
-        <Header
-          // headerTx="demoScreen.howTo"
-          leftIcon="back"
-          onLeftPress={goBack}
-          style={HEADER}
-        />
+        <Header leftIcon="back" onLeftPress={goBack} style={HEADER} />
         <View style={GAME_TITLE_CONTAINER}>
           <Text style={GAME_TITLE}>{game.title}</Text>
         </View>
-        {/* {returnButton()} */}
         {/*         
         <View style={PLAYER_SCORE_CONTAINER}>
           <View style={PLAYER_SCORE} text="Player 1 {Score}"></View>
@@ -230,7 +236,7 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
               <Button
                 key={q.id}
                 onPress={() => pressed(q)}
-                style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : DIFFICULTY_BUTTONS}
+                style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : BUTTONS}
                 text={q.text}
               ></Button>
             ))}
