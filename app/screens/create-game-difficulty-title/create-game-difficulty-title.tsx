@@ -142,7 +142,7 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
   }
   //SQUASHING "RENDERING WITHOUT pairCount VALUE" BUG
   useEffect(() => {
-    if (model.pairCount > 1) {
+    if (model.pairCount > 0) {
       goAssignMatches()
       console.log("IT WORKED")
     } else {
