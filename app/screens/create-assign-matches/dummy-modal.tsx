@@ -22,9 +22,9 @@ const TEXT: TextStyle = {
   fontFamily: typography.primary,
 }
 
-const VIEW_STYLE = { 
-  paddingTop: 50, 
-  backgroundColor: color.palette.skyBlue
+const VIEW_STYLE = {
+  paddingTop: 50,
+  backgroundColor: color.palette.skyBlue,
 }
 
 const GAME_TITLE_AND_DIFFICULTY: TextStyle = {
@@ -49,22 +49,117 @@ const LIST_CARD: ViewStyle = {
   padding: 20,
 }
 
+// TODO rme - step 1: Set the data up from pseudo.txt (ID, title, soundFile) add ID later
 const DATA = [
   {
     id: "1",
     title: "Lion - Roaring",
+    soundFile: "lionRoar.mp3",
   },
   {
     id: "2",
     title: "Lion - Word",
+    soundFile: "TTS_LION.mp3",
   },
   {
     id: "3",
     title: "Cow - Mooing",
+    soundFile: "cowMoo.mp3",
   },
   {
     id: "4",
     title: "Cow - Word",
+    soundFile: "TTS_COW.mp3",
+  },
+  {
+    id: "5",
+    title: "Dog - Bark",
+    soundFile: "dogBark.mp3",
+  },
+  {
+    id: "6",
+    title: "Dog - Word",
+    soundFile: "TTS_DOG.mp3",
+  },
+  {
+    id: "7",
+    title: "Cat - Meow",
+    soundFile: "catMeow.mp3",
+  },
+  {
+    id: "8",
+    title: "Cat - Word",
+    soundFile: "TTS_CAT.mp3",
+  },
+  {
+    id: "9",
+    title: "Rooster - Crowing",
+    soundFile: "roosterCrowing.mp3",
+  },
+  {
+    id: "10",
+    title: "Rooster - Word",
+    soundFile: "TTS_ROOSTER.mp3",
+  },
+  {
+    id: "11",
+    title: "Horse - Neigh",
+    soundFile: "scaredHorseNeighing.mp3",
+  },
+  {
+    id: "12",
+    title: "Horse - Word",
+    soundFile: "TTS_HORSE.mp3",
+  },
+  {
+    id: "13",
+    title: "Monkey - Grunt",
+    soundFile: "excitedMonkeyGrunt.mp3",
+  },
+  {
+    id: "14",
+    title: "Monkey - Word",
+    soundFile: "TTS_MONKEY.mp3",
+  },
+  {
+    id: "15",
+    title: "Cricket - Chirp",
+    soundFile: "singleCricketChirp.mp3",
+  },
+  {
+    id: "16",
+    title: "Cricket - Word",
+    soundFile: "TTS_CRICKET.mp3",
+  },
+  {
+    id: "17",
+    title: "Goose - Honk",
+    soundFile: "flockOfGeese.mp3",
+  },
+  {
+    id: "18",
+    title: "Goose - Word",
+    soundFile: "TTS_GOOSE.mp3",
+  },
+  {
+    id: "19",
+    title: "Wolf - Howl",
+    soundFile: "wolfHowl.mp3",
+  },
+  {
+    id: "20",
+    title: "Wolf - Word",
+    soundFile: "TTS_WOLF.mp3",
+  },
+  {
+    id: "21",
+    title: "Sheep - Bah",
+    soundFile: "wolfHowl.mp3",
+  },
+  {
+    id: "22",
+    title: "Sheep - Word",
+    soundFile: "TTS_SHEEP.mp3",
   },
 ]
 
@@ -100,7 +195,7 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
   const toggleOption = (item: any) => {
     // we can just do this now that it's single
     props.closeModal(item)
-    
+
     /* If we wanted them to CONFIRM */
     // const idx = selected.findIndex((e) => e.id === item.id)
     // if (idx >= 0) {
@@ -108,8 +203,6 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
     // } else {
     //   setSelected([item])
     // }
-
-    
   }
 
   const renderItem = ({ item }) => {
@@ -151,7 +244,7 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
         //   setModalVisible(!modalVisible);
         // }}
       >
-        <View style={ VIEW_STYLE }>
+        <View style={VIEW_STYLE}>
           <FlatList
             data={DATA}
             renderItem={renderItem}

@@ -10,3 +10,5 @@ export * from "./text/text"
 export * from "./text-field/text-field"
 export * from "./wallpaper/wallpaper"
 export * from "./auto-image/auto-image"
+//sound
+export * from "./sound-player/sound-player"

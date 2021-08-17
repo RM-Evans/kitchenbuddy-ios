@@ -10,6 +10,8 @@ import { useStores } from "../../models"
 
 import { SoundMatchGame } from "../../models/sound-match/sound-match-game"
 
+import { ResolvableSound } from "../../components/sound-player/sound-library-sounds"
+
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.primaryBackground,
@@ -150,6 +152,8 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
   //   // { id: 13, partner: 14 },
   //   // { id: 14, partner: 13 },
   // ]
+
+  // TODO rme - step 2: make this use the data ResolvableSound with the data
   if (!questions && game.pairs.length) {
     const tmp: any[] = []
     let qid = 0
@@ -157,7 +161,7 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
       const q: any = {
         id: qid++,
         text: e.questionText,
-        sound: e.questionSound,
+        sound: new ResolvableSound(e.questionSound),
         type: "question",
         sourceId: e.id,
       }

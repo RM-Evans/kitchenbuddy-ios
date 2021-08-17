@@ -1,9 +1,25 @@
 import React, { useState } from "react"
 // TextInput HOC?
-import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView, Alert } from "react-native"
+import {
+  View,
+  ViewStyle,
+  TextStyle,
+  TextInput,
+  ImageStyle,
+  SafeAreaView,
+  Alert,
+} from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
+import {
+  Button,
+  Header,
+  Screen,
+  Text,
+  Wallpaper,
+  AutoImage as Image,
+  PlaySoundTest,
+} from "../../components"
 import { color, spacing, typography } from "../../theme"
 import { useStores } from "../../models"
 
@@ -73,27 +89,28 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
 }
 
 export const MainMenu = observer(function MainMenu() {
-
   const { soundMatchStore } = useStores()
 
   const resetEverything = () => {
     const result = Alert.alert(
-      'Delete Everything?',
-      'Are you sure you want to delete everything? This is intended for developers demonstrating.',
-      [{
-        text: "Confirm",
-        onPress: () => { 
-          soundMatchStore.deleteEverything()
+      "Delete Everything?",
+      "Are you sure you want to delete everything? This is intended for developers demonstrating.",
+      [
+        {
+          text: "Confirm",
+          onPress: () => {
+            soundMatchStore.deleteEverything()
+          },
+          style: "destructive",
         },
-        style: "destructive",
-      },
-      {
-        text: "Cancel",
-        onPress: () => { 
-          console.log('cancelled delete')
+        {
+          text: "Cancel",
+          onPress: () => {
+            console.log("cancelled delete")
+          },
+          style: "cancel",
         },
-        style: "cancel",
-      }],
+      ],
       // {
       //   cancelable: true,
       //   onDismiss: () =>
@@ -118,6 +135,42 @@ export const MainMenu = observer(function MainMenu() {
 
   const goChooseDifficultyAndTitle = () => navigation.navigate("choose_title_difficulty")
 
+  let Sound = require("react-native-sound")
+
+  const testSound = new Sound("TTS_COW.mp3", Sound.MAIN_BUNDLE, (error) => {
+    console.log("beforehand")
+    if (error) {
+      console.log("failed to load the sound", error)
+      return
+    }
+    console.log("afterhand")
+    // loaded successfully
+    console.log(
+      "duration in seconds: " +
+        testSound.getDuration() +
+        "number of channels: " +
+        testSound.getNumberOfChannels(),
+    )
+  })
+
+  const doTheThing = () => {
+    console.log("test sound here")
+    console.log("afterhand")
+    // loaded successfully
+    console.log(
+      "duration in seconds:",
+      testSound.getDuration(),
+      "number of channels:",
+      testSound.getNumberOfChannels(),
+    )
+
+    testSound.play((success) => {
+      if (success) {
+        alert("Hi there")
+      }
+    })
+  }
+
   return (
     <View testID="LoginScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
@@ -128,6 +181,12 @@ export const MainMenu = observer(function MainMenu() {
                 style={HEADER}
                 titleStyle={HEADER_TITLE}
                 /> */}
+
+        <PlaySoundTest />
+
+        <Button style={MENU_BUTTONS} onPress={doTheThing}>
+          <Text style={MENU_BUTTONS_TEXT}>TESTSOUND</Text>
+        </Button>
 
         <View style={MENU_BUTTONS_CONTAINER}>
           <Button style={MENU_BUTTONS} onPress={goGameLibrary}>

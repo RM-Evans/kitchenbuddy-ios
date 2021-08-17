@@ -143,11 +143,14 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
   //SQUASHING "RENDERING WITHOUT pairCount VALUE" BUG
   useEffect(() => {
     if (model.pairCount > 0) {
+      //if number of pairs is higher than 0, navigate to AssignMatches screen
       goAssignMatches()
       console.log("IT WORKED")
     } else {
+      //if number of pairs is less than 0, give us an error telling us that the state hasnt changed to a valid value
       console.log("pair count didnt change")
     }
+    //watch model for changes in the value of pairs, and trigger if there is a change in value. If the value is greater than 0 or a valid amout, then trigger the use Effect hook and send us to the AssignMatches Screen
   }, [model.pairCount])
 
   const goBack = () => navigation.goBack()

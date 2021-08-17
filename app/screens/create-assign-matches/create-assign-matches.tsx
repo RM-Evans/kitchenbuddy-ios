@@ -6,9 +6,9 @@ import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 
-import { AssignMatchesProps } from '../../navigators/main-navigator'
+import { AssignMatchesProps } from "../../navigators/main-navigator"
 
-import Pairing, { PairType } from './pairing'
+import Pairing, { PairType } from "./pairing"
 import { useStores } from "../../models"
 
 // import { DummyRow } from "./dummy-row"
@@ -96,9 +96,9 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
   const goMainMenu = () => navigation.navigate("main_menu")
 
   const { title, pairCount } = props.route.params
-  const defaultModel: ModelType = {pairs: []} 
-  for(let i = 0; i < props.route.params.pairCount; i++){
-    defaultModel.pairs.push({ question: '', answer: ''})
+  const defaultModel: ModelType = { pairs: [] }
+  for (let i = 0; i < props.route.params.pairCount; i++) {
+    defaultModel.pairs.push({ question: "", answer: "" })
   }
 
   const [model, setModel] = useState<ModelType>(defaultModel)
@@ -107,19 +107,23 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
     setModel({ ...model })
   }
 
-
-  const isMissing = model.pairs.reduce( (prev, pair) => prev || pair.question === '' && pair.answer === '', false)
+  const isMissing = model.pairs.reduce(
+    (prev, pair) => prev || (pair.question === "" && pair.answer === ""),
+    false,
+  )
 
   const doSave = () => {
-    if( isMissing ){
-      return alert('Please fill in all the "Q?" and "A?" pairs to continue');
+    if (isMissing) {
+      return alert('Please fill in all the "Q?" and "A?" pairs to continue')
     }
 
-    const pairs = model.pairs.map(p => ({
+    const pairs = model.pairs.map((p) => ({
       questionText: p.question,
-      answerText: p.answer
+      answerText: p.answer,
     }))
     soundMatchStore.createGame(title, pairs)
+
+    goMainMenu()
   }
 
   return (
@@ -134,12 +138,14 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
           />
 
           <View style={TITLE_FORM_CONTAINER}>
-            <Text style={GAME_TITLE_AND_DIFFICULTY} text={ props.route.params.title } />
+            <Text style={GAME_TITLE_AND_DIFFICULTY} text={props.route.params.title} />
           </View>
 
           <View>
             {/* { model.pairs.map( (pair: PairType, idx: number) =>  <Text key={idx}> {idx} {pair.question} {pair.answer} </Text> ) }  */}
-            { model.pairs.map( (pair: PairType, idx: number) =>  <Pairing key={idx} pair={pair} setPair={pairSetter(idx)} /> ) } 
+            {model.pairs.map((pair: PairType, idx: number) => (
+              <Pairing key={idx} pair={pair} setPair={pairSetter(idx)} />
+            ))}
           </View>
 
           {/* dont use this component yet */}
