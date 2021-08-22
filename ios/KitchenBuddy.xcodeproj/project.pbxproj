@@ -37,6 +37,7 @@
 		44FBEF2626CC764000940202 /* singleCricketChirp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44FBEF1B26CC763F00940202 /* singleCricketChirp.mp3 */; };
 		44FBEF2726CC764000940202 /* lionRoar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44FBEF1C26CC764000940202 /* lionRoar.mp3 */; };
 		44FBEF2826CC764000940202 /* dogBark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44FBEF1D26CC764000940202 /* dogBark.mp3 */; };
+		44FBEF2A26D1D34F00940202 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBEF2926D1D34F00940202 /* libRNSVG.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A4B148D367B119F99EC2C2E5 /* libPods-KitchenBuddy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEA568884090C1B008E181 /* libPods-KitchenBuddy.a */; };
 		E0E402AF856107EC82190244 /* libPods-KitchenBuddy-KitchenBuddyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BE758935A381A571F5B21 /* libPods-KitchenBuddy-KitchenBuddyTests.a */; };
@@ -97,6 +98,7 @@
 		44FBEF1B26CC763F00940202 /* singleCricketChirp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleCricketChirp.mp3; sourceTree = "<group>"; };
 		44FBEF1C26CC764000940202 /* lionRoar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lionRoar.mp3; sourceTree = "<group>"; };
 		44FBEF1D26CC764000940202 /* dogBark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark.mp3; sourceTree = "<group>"; };
+		44FBEF2926D1D34F00940202 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40708BE521DBE7DC6E68C8 /* Pods-KitchenBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy.release.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy/Pods-KitchenBuddy.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = KitchenBuddy/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D3D2E99D3814D73E5353ACB /* Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy-KitchenBuddyTests/Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FBEF2A26D1D34F00940202 /* libRNSVG.a in Frameworks */,
 				A4B148D367B119F99EC2C2E5 /* libPods-KitchenBuddy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +176,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44FBEF2926D1D34F00940202 /* libRNSVG.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EADEA568884090C1B008E181 /* libPods-KitchenBuddy.a */,

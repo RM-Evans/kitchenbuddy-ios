@@ -14,6 +14,9 @@ import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper, AutoImage as Image } from "../../components"
 import { color, spacing, typography } from "../../theme"
 import { palette } from "../../theme/palette"
+import { PlaySoundTest } from "../../components"
+// @ts-ignore
+import DoThing from "../../../assets/DoThing.svg"
 
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
@@ -49,7 +52,11 @@ const LIST_CARD: ViewStyle = {
   padding: 20,
 }
 
-// TODO rme - step 1: Set the data up from pseudo.txt (ID, title, soundFile) add ID later
+const PLAY_BUTTON = {
+  width: 25,
+  height: 25,
+}
+
 const DATA = [
   {
     id: "1",
@@ -166,9 +173,8 @@ const DATA = [
 // select
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
-    <Button>
-      <Text>play</Text>
-    </Button>
+    <DoThing style={PLAY_BUTTON} />
+    {/* <PlaySoundTest /> */}
     <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
   </TouchableOpacity>
 )

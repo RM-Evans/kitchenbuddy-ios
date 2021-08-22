@@ -4,7 +4,7 @@ import { Text } from "../text/text"
 import { COW_NAME, COW_SOUND } from "./sound-library-sounds"
 
 export function PlaySoundTest() {
-  const doTheThing = () => {
+  const playTheSound = () => {
     COW_NAME.play((success) => {
       if (!success) {
         alert("Hi there")
@@ -13,8 +13,8 @@ export function PlaySoundTest() {
   }
 
   return (
-    <Button onPress={doTheThing} style={{ height: 30, width: 30 }}>
-      <Text>test my sounds</Text>
+    <Button onPress={playTheSound} style={{ height: 30, width: 30 }}>
+      <Text>Play</Text>
     </Button>
   )
 }
