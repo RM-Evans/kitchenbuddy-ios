@@ -21,3 +21,4 @@ export class ResolvableSound extends Sound {
 
 export const COW_NAME = new ResolvableSound("TTS_COW.mp3")
 export const COW_SOUND = new ResolvableSound("cowMoo.mp3")
+export const GOOSE_SOUND = new ResolvableSound("flockOfGeese.mp3")

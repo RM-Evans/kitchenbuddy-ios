@@ -137,7 +137,7 @@ export const MainMenu = observer(function MainMenu() {
 
   let Sound = require("react-native-sound")
 
-  const testSound = new Sound("TTS_COW.mp3", Sound.MAIN_BUNDLE, (error) => {
+  const testSound = new Sound("wolfHowl.mp3", Sound.MAIN_BUNDLE, (error) => {
     console.log("beforehand")
     if (error) {
       console.log("failed to load the sound", error)

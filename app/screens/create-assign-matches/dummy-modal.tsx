@@ -173,8 +173,8 @@ const DATA = [
 // select
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
-    <DoThing style={PLAY_BUTTON} />
-    {/* <PlaySoundTest /> */}
+    {/* <DoThing style={PLAY_BUTTON} /> */}
+    <PlaySoundTest />
     <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
   </TouchableOpacity>
 )
