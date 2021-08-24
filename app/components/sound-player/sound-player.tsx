@@ -13,10 +13,11 @@ const PLAY_BUTTON = {
 
 export function PlaySoundTest() {
   const playTheSound = () => {
-    GOOSE_SOUND.play((success) => {
-      // if (!success) {
-      //   alert("Hi there")
-      // }
+    alert("nope")
+    COW_NAME.play((success) => {
+      if (!success) {
+        alert("Hi there")
+      }
     })
   }
 

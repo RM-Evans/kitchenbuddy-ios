@@ -16,7 +16,7 @@ import { color, spacing, typography } from "../../theme"
 import { palette } from "../../theme/palette"
 import { PlaySoundTest } from "../../components"
 // @ts-ignore
-import DoThing from "../../../assets/DoThing.svg"
+// import DoThing from "../../../assets/DoThing.svg"
 
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
