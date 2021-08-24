@@ -5,6 +5,7 @@ import { COW_NAME, COW_SOUND } from "./sound-library-sounds"
 
 export function PlaySoundTest() {
   const playTheSound = () => {
+    alert('nope')
     COW_NAME.play((success) => {
       if (!success) {
         alert("Hi there")

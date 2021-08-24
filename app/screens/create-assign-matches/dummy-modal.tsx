@@ -16,7 +16,7 @@ import { color, spacing, typography } from "../../theme"
 import { palette } from "../../theme/palette"
 import { PlaySoundTest } from "../../components"
 // @ts-ignore
-import DoThing from "../../../assets/DoThing.svg"
+// import DoThing from "../../../assets/DoThing.svg"
 
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
@@ -173,7 +173,7 @@ const DATA = [
 // select
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
-    <DoThing style={PLAY_BUTTON} />
+    {/* <DoThing style={PLAY_BUTTON} /> */}
     {/* <PlaySoundTest /> */}
     <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
   </TouchableOpacity>
