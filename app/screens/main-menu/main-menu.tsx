@@ -125,13 +125,13 @@ export const MainMenu = observer(function MainMenu() {
 
   const navigation = useNavigation()
   // const nextScreen = () => navigation.navigate("login")
-  const goBack = () => navigation.goBack()
+  // const goBack = () => navigation.goBack()
 
   const goLogin = () => navigation.navigate("login")
 
   const goGameLibrary = () => navigation.navigate("gameLibrary")
 
-  const goChooseDifficulty = () => navigation.navigate("choose_difficulty")
+  // const goChooseDifficulty = () => navigation.navigate("choose_difficulty")
 
   const goChooseDifficultyAndTitle = () => navigation.navigate("choose_title_difficulty")
 
@@ -184,9 +184,9 @@ export const MainMenu = observer(function MainMenu() {
 
         <PlaySoundTest />
 
-        <Button style={MENU_BUTTONS} onPress={doTheThing}>
+        {/* <Button style={MENU_BUTTONS} onPress={doTheThing}>
           <Text style={MENU_BUTTONS_TEXT}>TESTSOUND</Text>
-        </Button>
+        </Button> */}
 
         <View style={MENU_BUTTONS_CONTAINER}>
           <Button style={MENU_BUTTONS} onPress={goGameLibrary}>

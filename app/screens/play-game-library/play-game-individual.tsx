@@ -56,6 +56,16 @@ const GAME_SETUP_CONTAINER: ViewStyle = {
   paddingBottom: 20,
 }
 
+interface PLAY_GAME_BUTTON {
+  text: TextStyle
+  button: ViewStyle
+}
+
+const PLAY_GAME_BUTTON = StyleSheet.create<PLAY_GAME_BUTTON>({
+  text: { ...TEXT, ...BOLD, fontSize: 25, padding: 10 },
+  button: { backgroundColor: palette.lightBlueGrey, borderWidth: 2, borderColor: palette.darkBlue },
+})
+
 // const IS_ACTIVE: ViewStyle = {
 //   backgroundColor: color.palette.angry,
 // }
@@ -64,17 +74,17 @@ const GAME_SETUP_CONTAINER: ViewStyle = {
 //   backgroundColor: color.palette.skyBlue,
 // }
 
-const SELECTED_PLAYER_COUNT = StyleSheet.create({
-  isSelected: {
-    backgroundColor: color.palette.angry,
-  },
-  notSelected: {
-    backgroundColor: color.palette.skyBlue,
-    borderRadius: 5,
-    height: 40,
-    padding: 10,
-  },
-})
+// const SELECTED_PLAYER_COUNT = StyleSheet.create({
+//   isSelected: {
+//     backgroundColor: color.palette.angry,
+//   },
+//   notSelected: {
+//     backgroundColor: color.palette.skyBlue,
+//     borderRadius: 5,
+//     height: 40,
+//     padding: 10,
+//   },
+// })
 
 const DUMMYGAMEDATA = {
   id: "1",
@@ -90,8 +100,6 @@ export const GameIndividual = observer(function GameIndividual(props: SetupGameP
   const { gameId } = props.route.params
 
   const goBack = () => navigation.goBack()
-
-  const goLogin = () => navigation.navigate("login")
 
   const goGeneratedGame = () => {
     navigation.navigate("playGame", { gameId })
@@ -143,10 +151,7 @@ export const GameIndividual = observer(function GameIndividual(props: SetupGameP
   return (
     <View testID="GameIndividual" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
-        <Header
-          leftIcon={"back"}
-          onLeftPress={goBack}
-        />
+        <Header leftIcon={"back"} onLeftPress={goBack} />
         <View style={GAME_INFO_CONTAINER}>
           <Text style={GAME_NAME}>{DUMMYGAMEDATA.title}</Text>
           <Text style={GAME_DIFFICULTY}>level {DUMMYGAMEDATA.difficulty}</Text>
@@ -156,19 +161,11 @@ export const GameIndividual = observer(function GameIndividual(props: SetupGameP
         <View style={GAME_SETUP_CONTAINER}>
           <Button
             onPress={goGeneratedGame}
-            textStyle={{ ...TEXT, ...BOLD, fontSize: 30 }}
+            style={PLAY_GAME_BUTTON.button}
+            textStyle={PLAY_GAME_BUTTON.text}
             text="PLAY GAME"
           />
         </View>
-
-        {/* FOR DEVVING
-        <Text style={SIGNUP_REDIRECT_TEXT}>
-          main menu
-          <Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}>
-            {" "}
-            menu{" "}
-          </Text>
-        </Text> */}
       </Screen>
     </View>
   )

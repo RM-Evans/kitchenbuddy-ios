@@ -14,4 +14,5 @@ export const palette = {
   skyBlue: "#5B85AA",
   darkBlue: "#1E2139",
   btnGreen: "#0bd104",
+  lightBlueGrey: "#b8c3cc",
 }

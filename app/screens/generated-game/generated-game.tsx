@@ -82,6 +82,7 @@ const BUTTONS: ViewStyle = {
   borderColor: color.palette.darkBlue,
 }
 
+//todo -- if button is pressed, then change to this style UNTIL we decide if it is or isnt a pair
 const ACTIVATED_BUTTONS: ViewStyle = {
   ...BUTTONS,
   backgroundColor: color.palette.lighterGrey,
@@ -90,12 +91,14 @@ const ACTIVATED_BUTTONS: ViewStyle = {
   shadowOpacity: 0,
 }
 
+//todo -- if NOT a pair, BRIEFLY assign the buttons this style --- THEN go back to default style BUTTONS
 const NOT_A_PAIR_BUTTONS: ViewStyle = {
   ...BUTTONS,
   backgroundColor: color.palette.angry,
   borderWidth: 1,
 }
 
+//todo -- if its a pair, assign the buttons this style
 const YES_A_PAIR_BUTTONS: ViewStyle = {
   ...BUTTONS,
   backgroundColor: color.palette.btnGreen,
@@ -203,25 +206,6 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
     }
   }
 
-  // let returnButton = () => {
-  //   return (
-  //     <View style={MATCHING_PIECES_CONTAINER}>
-  //       <Text>{pressed}</Text>
-  //       {questions.map((q) => (
-  //         <Button
-  //           key={q.id}
-  //           onPress={() => pressed(q)}
-  //           // style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : BUTTONS}
-  //           style={BUTTONS}
-  //         ></Button>
-  //       ))}
-  //     </View>
-  //   )
-  // }
-
-  // const goAssignMatches = () => navigation.navigate("assign_matches")
-  // const goMainMenu = () => navigation.navigate("main_menu")
-
   return (
     <View testID="GeneratedGameScreen" style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
@@ -241,7 +225,7 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
                 key={q.id}
                 onPress={() => pressed(q)}
                 style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : BUTTONS}
-                text={q.text}
+                // text={q.text}
               ></Button>
             ))}
         </View>

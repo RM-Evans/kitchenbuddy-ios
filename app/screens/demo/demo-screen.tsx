@@ -15,7 +15,6 @@ import { color, spacing } from "../../theme"
 import { Api } from "../../services/api"
 import { save } from "../../utils/storage"
 
-
 export const mcup = require("./mcup.png")
 
 const FULL: ViewStyle = { flex: 1 }
@@ -40,7 +39,7 @@ const TOOLBTNIMG: ViewStyle = {
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
-const PRIMARYTEXTCOLOR: TextStyle = {color: color.palette.darkBlue}
+const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
 // const DEMO_TEXT: TextStyle = {
 //   ...BOLD,
 //   ...PRIMARYTEXTCOLOR,
@@ -74,8 +73,6 @@ const TAGLINE: TextStyle = {
   lineHeight: 22,
   marginBottom: spacing[4] + spacing[1],
 }
-
-
 
 const HINT: TextStyle = {
   ...PRIMARYTEXTCOLOR,
@@ -135,7 +132,6 @@ export const DemoScreen = observer(function DemoScreen() {
 
   return (
     <View testID="DemoScreen" style={FULL}>
-      
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
         <Header
           headerTx="demoScreen.howTo"
@@ -146,10 +142,10 @@ export const DemoScreen = observer(function DemoScreen() {
         />
         <Text style={TITLE} preset="header" tx="demoScreen.title" />
         <Text style={TAGLINE} tx="demoScreen.tagLine" />
-          <Button
-          style={TOOLBTN}
-          ><Image source={mcup} style={TOOLBTNIMG} /></Button>
-          
+        <Button style={TOOLBTN}>
+          <Image source={mcup} style={TOOLBTNIMG} />
+        </Button>
+
         <View>
           {/* <Button
             style={DEMO}
@@ -165,8 +161,6 @@ export const DemoScreen = observer(function DemoScreen() {
           tx="demoScreen.demoList"
           onPress={() => navigation.navigate("demoList")}
         /> */}
-        
-
       </Screen>
     </View>
   )

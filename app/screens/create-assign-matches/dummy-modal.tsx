@@ -44,17 +44,39 @@ const MODAL_CONTAINER: ViewStyle = {
 
 const MODAL_MAIN: ViewStyle = {}
 
-const MODAL_LIST: ViewStyle = {}
+const MODAL_LIST: ViewStyle = {
+  height: "83%",
+}
 
 const LIST_CARD: ViewStyle = {
   flexDirection: "row",
+  justifyContent: "space-between",
 
-  padding: 20,
+  padding: 30,
 }
 
-const PLAY_BUTTON = {
-  width: 25,
-  height: 25,
+const ITEM_TEXT: TextStyle = {
+  ...TEXT,
+  fontSize: 20,
+  // borderColor: palette.angry,
+  // borderWidth: 2,
+  // borderStyle: "solid",
+}
+
+const FLATLIST_SEPARATOR: ViewStyle = {
+  height: 1,
+  backgroundColor: color.palette.darkBlue,
+}
+
+// flatlist separator
+const flatlistSeparator = () => {
+  return <View style={FLATLIST_SEPARATOR} />
+}
+
+const CONFIRM_SELECTION_BTN_TEXT: TextStyle = {
+  ...TEXT,
+  ...BOLD,
+  fontSize: 25,
 }
 
 const DATA = [
@@ -174,8 +196,8 @@ const DATA = [
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
     {/* <DoThing style={PLAY_BUTTON} /> */}
+    <Text style={ITEM_TEXT}>{item.title}</Text>
     <PlaySoundTest />
-    <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text>
   </TouchableOpacity>
 )
 
@@ -200,25 +222,28 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
 
   const toggleOption = (item: any) => {
     // we can just do this now that it's single
-    props.closeModal(item)
+    // props.closeModal(item)
 
     /* If we wanted them to CONFIRM */
-    // const idx = selected.findIndex((e) => e.id === item.id)
-    // if (idx >= 0) {
-    //   setSelected([])
-    // } else {
-    //   setSelected([item])
-    // }
+    const idx = selected.findIndex((e) => e.id === item.id)
+    if (idx >= 0) {
+      setSelected([])
+    } else {
+      setSelected([item])
+    }
   }
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
     // const backgroundColor = item.id === selectedId ? palette.offWhite : palette.skyBlue;
     // const color = item.id === selectedId ? palette.darkBlue : palette.white;
 
     const isSelected = selected.findIndex((e) => e.id === item.id) >= 0
 
-    const backgroundColor = isSelected ? palette.offWhite : palette.skyBlue
-    const color = isSelected ? palette.darkBlue : palette.white
+    const backgroundColorBase = index % 2 === 0 ? palette.lighterGrey : palette.lightBlueGrey
+    const backgroundColor = isSelected ? palette.skyBlue : backgroundColorBase
+    // const color = isSelected && index % 2 === 0 ? palette.darkBlue : palette.white
+
+    //alternate list item color
 
     return (
       <Item
@@ -232,7 +257,7 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
 
   const doClose = (item: any) => {
     if (selected.length !== 1) {
-      alert("Please select only 1 option")
+      alert("Please select 1 option")
       return
     }
     props.closeModal(selected[0])
@@ -246,8 +271,8 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
         transparent={true}
         visible={true}
         // onRequestClose={() => {
-        //   Alert.alert("Modal has been closed.");
-        //   setModalVisible(!modalVisible);
+        //   Alert.alert("Modal has been closed.")
+        //   setModalVisible(!modalVisible)
         // }}
       >
         <View style={VIEW_STYLE}>
@@ -256,14 +281,21 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
             style={MODAL_LIST}
+            ItemSeparatorComponent={flatlistSeparator}
           />
 
           <View>
-            {/* <Text style={GAME_TITLE_AND_DIFFICULTY}>Hello World!</Text> */}
             <Button
+              //TODO -- when selected === 1, then change background color of button to tell user that I can confirm
               // style={[styles.button, styles.buttonClose]}
+              style={{
+                height: 100,
+                backgroundColor: palette.primaryBackground,
+                borderColor: palette.darkBlue,
+                borderWidth: 3,
+              }}
               // when item selected, enable button to send to confirm selection/close modal
-              textStyle={GAME_TITLE_AND_DIFFICULTY}
+              textStyle={CONFIRM_SELECTION_BTN_TEXT}
               text={
                 "Confirm " +
                 (selected.length === 1 ? selected[0].title : `${selected.length} options`)
