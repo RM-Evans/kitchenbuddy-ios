@@ -4,15 +4,20 @@ import { Button, Text } from "../../components"
 import { color, spacing, typography } from "../../theme"
 import { DummyModal } from "./dummy-modal"
 
-export type PairType = {  question: string, answer: string } 
+export type PairType = { 
+  question: string, 
+  questionSound: string, 
+  answer: string, 
+  answerSound: string 
+} 
 
 const BTN_CONNECTOR: ViewStyle = {
+  top: 40,
+  width: 30,
+  height: 2,
+  marginHorizontal: -10,
   justifyContent: "center",
   backgroundColor: color.palette.black,
-  height: 2,
-  width: 30,
-  top: 40,
-  marginHorizontal: -10,
 }
 
 
@@ -20,7 +25,6 @@ const MATCH_ASSIGN_BUTTONS_CONTAINER: ViewStyle = {
   flex: 10,
   justifyContent: "center",
   flexDirection: "row",
-
   paddingBottom: 50,
 }
 
@@ -70,11 +74,13 @@ const Pairing = (props: PairingProps) => {
     setModalVisible(false)
     if( target === 'question' ){
       const question = item.title
-      setPair({ ...pair, question })
+      const questionSound = item.soundFile
+      setPair({ ...pair, question, questionSound })
       setTarget(undefined)
     }else if (target === 'answer'){
       const answer = item.title
-      setPair({ ...pair, answer })
+      const answerSound = item.soundFile
+      setPair({ ...pair, answer, answerSound })
       setTarget(undefined)
     }
   }

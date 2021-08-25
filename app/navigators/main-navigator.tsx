@@ -9,7 +9,7 @@ import { createStackNavigator, StackScreenProps } from "@react-navigation/stack"
 import {
   WelcomeScreen,
   DemoScreen,
-  DemoListScreen,
+  // DemoListScreen,
   LoginScreen,
   SignupScreen,
   PasswordRecoveryScreen,
@@ -70,7 +70,7 @@ export function MainNavigator() {
     >
       <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="demoList" component={DemoListScreen} />
+      {/* <Stack.Screen name="demoList" component={DemoListScreen} /> */}
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="signup" component={SignupScreen} />
       {/* <Stack.Screen name="password_recovery" component={PasswordRecoveryScreen} /> */}

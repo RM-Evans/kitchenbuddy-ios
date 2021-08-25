@@ -37,14 +37,21 @@ export const SoundMatchStoreModel = types
   .actions((self) => ({
     createGame: (title: string, pairings: SoundMatchPairs) => {
       console.log("create the game", title, pairings)
-      const pairs = pairings.map((p) => SoundMatchPairModel.create({ id: self.nextId(), ...p }))
-      console.log(self.nextId)
+      const pairs = []
+      for(let p of pairings ){
+        const id = self.nextId()
+        pairs.push( SoundMatchPairModel.create({ id, ...p }) )
+        console.log('created pair', id, p)
+      }
+
       self.pairs.replace(self.pairs.concat(self.pairs, pairs))
+      const id = self.nextId()
       const game = SoundMatchGameModel.create({
-        id: self.nextId(),
+        id,
         title,
         pairs: pairs.map((p) => p.id),
       })
+      console.log('created game', id)
       self.games.push(game)
     },
     getGame: (id: number) => {

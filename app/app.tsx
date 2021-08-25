@@ -63,7 +63,7 @@ function App() {
   if (!rootStore) return null
 
   // RME: if you're broken before loading the app, run this
-  rootStore.soundMatchStore.deleteEverything()
+  // rootStore.soundMatchStore.deleteEverything()
 
   // otherwise, we're ready to render the app
   return (
