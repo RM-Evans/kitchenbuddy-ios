@@ -135,41 +135,6 @@ export const MainMenu = observer(function MainMenu() {
 
   const goChooseDifficultyAndTitle = () => navigation.navigate("choose_title_difficulty")
 
-  // let Sound = require("react-native-sound")
-
-  // const testSound = new Sound("TTS_COW.mp3", Sound.MAIN_BUNDLE, (error) => {
-  //   console.log("beforehand")
-  //   if (error) {
-  //     console.log("failed to load the sound", error)
-  //     return
-  //   }
-  //   console.log("afterhand")
-  //   // loaded successfully
-  //   console.log(
-  //     "duration in seconds: " +
-  //       testSound.getDuration() +
-  //       "number of channels: " +
-  //       testSound.getNumberOfChannels(),
-  //   )
-  // })
-
-  // const doTheThing = () => {
-  //   console.log("test sound here")
-  //   console.log("afterhand")
-  //   // loaded successfully
-  //   console.log(
-  //     "duration in seconds:",
-  //     testSound.getDuration(),
-  //     "number of channels:",
-  //     testSound.getNumberOfChannels(),
-  //   )
-
-  //   testSound.play((success) => {
-  //     if (success) {
-  //       alert("Hi there")
-  //     }
-  //   })
-  // }
 
   return (
     <View testID="LoginScreen" style={FULL}>
