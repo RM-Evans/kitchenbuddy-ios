@@ -117,10 +117,16 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
       return alert('Please fill in all the "Q?" and "A?" pairs to continue')
     }
 
-    const pairs = model.pairs.map((p) => ({
-      questionText: p.question,
-      answerText: p.answer,
-    }))
+    const pairs = model.pairs.map((p) => {
+      console.log('what have we here', p)
+      const { questionSound, answerSound } = p
+      return {
+        questionSound,
+        answerSound,
+        questionText: p.question,
+        answerText: p.answer,
+      }
+    })
     soundMatchStore.createGame(title, pairs)
 
     goMainMenu()

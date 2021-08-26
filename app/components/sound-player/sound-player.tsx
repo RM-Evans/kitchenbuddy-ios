@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, TouchableOpacity } from "react-native"
 import { Button } from "../button/button"
 import { Text } from "../text/text"
-import { COW_NAME, COW_SOUND, GOOSE_SOUND } from "./sound-library-sounds"
+import { COW_NAME, COW_SOUND } from "./sound-library-sounds"
 // @ts-ignore
 import DoThing from "../../../assets/DoThing.svg"
 import { palette } from "../../theme/palette"
@@ -20,12 +20,14 @@ const PLAY_BUTTON = {
 }
 
 export function PlaySoundTest() {
-  const playTheSound = () => {
-    COW_NAME.play((success) => {
-      if (!success) {
-        alert("Hi there")
-      }
-    })
+  const playTheSound = async () => {
+    COW_NAME.play()
+      .then((e) => {
+        console.log("success on demo")
+      })
+      .catch((err) => {
+        console.warn("failed", err)
+      })
 
     alert("nope")
   }
@@ -49,10 +51,6 @@ export function PlaySoundTest() {
     <View>
       <FlatListPlay />
     </View>
-
-    // <Button onPress={playTheSound} style={{ height: 30, width: 30 }}>
-    //   <Text>Play</Text>
-    // </Button>
   )
 
   //FlatListPlay

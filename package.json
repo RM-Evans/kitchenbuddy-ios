@@ -50,6 +50,7 @@
     "reactotron-react-js": "^3.3.7",
     "reactotron-react-native": "5.0.0",
     "rn-sound": "^0.8.1",
+    "uuid": "^3.4.0",
     "validate.js": "0.13.1"
   },
   "devDependencies": {

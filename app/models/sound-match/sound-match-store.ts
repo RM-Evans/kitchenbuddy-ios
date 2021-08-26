@@ -1,3 +1,4 @@
+import { v4 as UUID } from "uuid"
 import { getSnapshot, Instance, SnapshotOut, types } from "mobx-state-tree"
 // import { CharacterModel, CharacterSnapshot } from "../character/character"
 // import { CharacterApi } from "../../services/api/character-api"
@@ -19,17 +20,11 @@ export type SoundMatchPairs = { questionText: string; answerText: string }[]
 export const SoundMatchStoreModel = types
   .model("SoundMatchStore")
   .props({
-    id: types.optional(types.number, 1),
     games: types.optional(types.array(SoundMatchGameModel), []),
     pairs: types.optional(types.array(SoundMatchPairModel), []),
   })
   .extend(withEnvironment)
   .actions((self) => ({
-    nextId: () => {
-      const { id } = self
-      self.id = self.id + 1
-      return id
-    },
     // saveCharacters: (snapshots: SoundMatchGameSnapshot[]) => {
     //   self.games.replace(snapshots)
     // },
@@ -37,17 +32,27 @@ export const SoundMatchStoreModel = types
   .actions((self) => ({
     createGame: (title: string, pairings: SoundMatchPairs) => {
       console.log("create the game", title, pairings)
-      const pairs = pairings.map((p) => SoundMatchPairModel.create({ id: self.nextId(), ...p }))
-      console.log(self.nextId)
-      self.pairs.replace(self.pairs.concat(self.pairs, pairs))
+      const pairs = self.pairs || []
+      const newPairs = []
+      for (let p of pairings) {
+        const id = UUID()
+        const pair = SoundMatchPairModel.create({ id, ...p })
+        pairs.push(pair)
+        newPairs.push(pair)
+        console.log("created pair", id, p, pair)
+      }
+
+      self.pairs.replace(pairs)
+      const id = UUID()
       const game = SoundMatchGameModel.create({
-        id: self.nextId(),
+        id,
         title,
-        pairs: pairs.map((p) => p.id),
+        pairs: newPairs.map((p) => p.id),
       })
+      console.log("created game", id)
       self.games.push(game)
     },
-    getGame: (id: number) => {
+    getGame: (id: string) => {
       const game = self.games.find((e) => e.id === id)
       return game
     },

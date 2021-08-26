@@ -63,7 +63,7 @@ interface PLAY_GAME_BUTTON {
 
 const PLAY_GAME_BUTTON = StyleSheet.create<PLAY_GAME_BUTTON>({
   text: { ...TEXT, ...BOLD, fontSize: 25, padding: 10 },
-  button: { backgroundColor: palette.lightBlueGrey, borderWidth: 2, borderColor: palette.darkBlue },
+  button: { backgroundColor: color.transparent, borderWidth: 2, borderColor: palette.darkBlue },
 })
 
 // const IS_ACTIVE: ViewStyle = {

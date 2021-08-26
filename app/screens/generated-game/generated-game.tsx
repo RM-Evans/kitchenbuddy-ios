@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 // TextInput HOC?
 import { View, ViewStyle, TextStyle, TextInput, ImageStyle, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
@@ -92,6 +92,14 @@ const ACTIVATED_BUTTONS: ViewStyle = {
 }
 
 //todo -- if NOT a pair, BRIEFLY assign the buttons this style --- THEN go back to default style BUTTONS
+const COMPLETED_BUTTONS: ViewStyle = {
+  ...BUTTONS,
+  backgroundColor: color.palette.btnGreen,
+  borderWidth: 1,
+  borderColor: color.palette.btnGreen,
+  shadowOpacity: 0,
+}
+
 const NOT_A_PAIR_BUTTONS: ViewStyle = {
   ...BUTTONS,
   backgroundColor: color.palette.angry,
@@ -137,24 +145,12 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
 
   const [activated, setActivated] = useState<any>()
 
-  const [questions, setQuestions] = useState<any[]>()
+  const [questions, setQuestions] = useState<any[]>() // intentionally null for lazy load
 
-  // const questions: any[] = [
-  //   { id: 1, partner: 2 },
-  //   { id: 2, partner: 1 },
-  //   { id: 3, partner: 4 },
-  //   { id: 4, partner: 3 },
-  //   { id: 5, partner: 6 },
-  //   { id: 6, partner: 5 },
-  //   { id: 7, partner: 8 },
-  //   { id: 8, partner: 7 },
-  //   { id: 9, partner: 10 },
-  //   { id: 10, partner: 9 },
-  //   { id: 11, partner: 12 },
-  //   { id: 12, partner: 11 },
-  //   // { id: 13, partner: 14 },
-  //   // { id: 14, partner: 13 },
-  // ]
+  const [completed, setCompleted] = useState<any[]>([])
+
+  const isCompleted = (target) =>
+    completed.findIndex((id) => id === (target.id !== undefined ? target.id : target)) >= 0
 
   // TODO rme - step 2: make this use the data ResolvableSound with the data
   if (!questions && game.pairs.length) {
@@ -164,7 +160,7 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
       const q: any = {
         id: qid++,
         text: e.questionText,
-        sound: new ResolvableSound(e.questionSound),
+        sound: e.questionSound,
         type: "question",
         sourceId: e.id,
       }
@@ -187,17 +183,29 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
     console.log("init questions")
   }
 
-  const pressed = (q: any) => {
+  const pressed = async (q: any) => {
+    const sound = new ResolvableSound(q.sound)
+    sound.play().catch((err) => {
+      console.warn("failed", err)
+    })
     // const activatedButtonStyle = ACTIVATED_BUTTONS
     // const defaultButtonStyle = BUTTONS
     // const notAPairStyle = NOT_A_PAIR_BUTTONS
     // const yesAPairStyle = YES_A_PAIR_BUTTONS
+    // console.log(q)
     if (activated) {
       if (activated.partner === q.id) {
-        alert("yes")
+        setCompleted([...completed, activated.id, q.id])
         // return `style={yesAPairStyle}`
+
+        // handle winning
+        // NOTE: we don't have the updated state yet from `setCompleted`, so we're just cheating
+        if (completed.length + 2 === questions.length) {
+          alert("Congratulations! In the future we'd rank your progress!")
+          navigation.navigate("main_menu")
+        }
       } else {
-        alert("no")
+        console.log("no")
       }
       setActivated(null)
     } else {
@@ -220,14 +228,19 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
         {/* turns */}
         <View style={MATCHING_PIECES_CONTAINER}>
           {questions &&
-            questions.map((q) => (
-              <Button
-                key={q.id}
-                onPress={() => pressed(q)}
-                style={activated && activated.id === q.id ? ACTIVATED_BUTTONS : BUTTONS}
-                // text={q.text}
-              ></Button>
-            ))}
+            questions.map((q) => {
+              const isComplete = isCompleted(q)
+              const isActive = activated && activated.id === q.id
+
+              let style = BUTTONS
+              if (isComplete) {
+                style = COMPLETED_BUTTONS
+              } else if (isActive) {
+                style = ACTIVATED_BUTTONS
+              }
+
+              return <Button key={q.id} onPress={() => pressed(q)} style={style} text={q.text} />
+            })}
         </View>
       </Screen>
     </View>

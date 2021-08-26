@@ -198,6 +198,8 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     {/* <DoThing style={PLAY_BUTTON} /> */}
     <Text style={ITEM_TEXT}>{item.title}</Text>
     <PlaySoundTest />
+    {/* <Button style={PLAY_BUTTON} text="play"/> */}
+    {/* <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text> */}
   </TouchableOpacity>
 )
 
@@ -239,11 +241,13 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
 
     const isSelected = selected.findIndex((e) => e.id === item.id) >= 0
 
-    const backgroundColorBase = index % 2 === 0 ? palette.lighterGrey : palette.lightBlueGrey
-    const backgroundColor = isSelected ? palette.skyBlue : backgroundColorBase
-    // const color = isSelected && index % 2 === 0 ? palette.darkBlue : palette.white
+    //if I want to alternate the bg colors of flatlist items
+    // const backgroundColorBase = index % 2 === 0 ? palette.lighterGrey : palette.lightBlueGrey
 
-    //alternate list item color
+    const backgroundColorBase = palette.lighterGrey
+    const backgroundColor = isSelected ? palette.skyBlue : backgroundColorBase
+
+    // const color = isSelected && index % 2 === 0 ? palette.darkBlue : palette.white
 
     return (
       <Item
