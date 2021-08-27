@@ -171,8 +171,6 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
           style={HEADER}
         />
 
-        <Text>{JSON.stringify(model)}</Text>
-
         <View style={TITLE_FORM_CONTAINER}>
           <Text style={GAME_TITLE_DESCRIPTION}>Name your game:</Text>
 
@@ -187,7 +185,7 @@ export const ChooseTitleAndDifficulty = observer(function ChooseTitleAndDifficul
 
         <View style={DIFFICULTY_BUTTONS_CONTAINER}>
           <Button style={DIFFICULTY_BUTTONS} onPress={setPairCount(2)}>
-            <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>DEBUG</Text>
+            <Text style={DIFFICULTY_BUTTONS_PRIMARY_TEXT}>EASIEST</Text>
             <Text style={DIFFICULTY_BUTTONS_SECONDARY_TEXT}>2 pairs</Text>
           </Button>
 

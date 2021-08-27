@@ -18,6 +18,8 @@ import { PlaySoundTest } from "../../components"
 // @ts-ignore
 // import DoThing from "../../../assets/DoThing.svg"
 
+//TODO: HOOK UP SOUNDS TO OBJECTS - RIGHT NOW ITS JUST PLAYING THE HARDCODED SOUND
+
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
 const TEXT: TextStyle = {
@@ -30,12 +32,12 @@ const VIEW_STYLE = {
   backgroundColor: color.palette.skyBlue,
 }
 
-const GAME_TITLE_AND_DIFFICULTY: TextStyle = {
-  ...TEXT,
-  ...BOLD,
-  fontSize: 20,
-  textAlign: "center",
-}
+// const GAME_TITLE_AND_DIFFICULTY: TextStyle = {
+//   ...TEXT,
+//   ...BOLD,
+//   fontSize: 20,
+//   textAlign: "center",
+// }
 
 const MODAL_CONTAINER: ViewStyle = {
   flex: 1,

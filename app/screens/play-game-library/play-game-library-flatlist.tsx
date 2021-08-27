@@ -36,20 +36,6 @@ const GAME_LIBRARY_PAGE_TITLE: TextStyle = {
   fontSize: 32,
 }
 
-// for devving
-
-const SIGNUP_REDIRECT_TEXT: TextStyle = {
-  flex: 1,
-  ...TEXT,
-  textAlign: "center",
-}
-
-const SIGNUP_REDIRECT_LINK: TextStyle = {
-  ...TEXT,
-  ...BOLD,
-  textDecorationLine: "underline",
-}
-
 export const GameLibraryList = observer(function GameLibraryList() {
   const navigation = useNavigation()
 
@@ -59,14 +45,6 @@ export const GameLibraryList = observer(function GameLibraryList() {
         <View style={GAME_LIBRARY_PAGE_TITLE_CONTAINER}>
           <Text style={GAME_LIBRARY_PAGE_TITLE}>Game Library</Text>
         </View>
-        {/* FOR DEVVING */}
-        <Text style={SIGNUP_REDIRECT_TEXT}>
-          main menu
-          <Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}>
-            {" "}
-            menu{" "}
-          </Text>
-        </Text>
       </Screen>
     </View>
   )

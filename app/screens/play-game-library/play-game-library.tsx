@@ -189,7 +189,7 @@ export const GameLibrary = observer(function GameLibrary() {
           <FlatList
             data={DUMMYGAMEDATA}
             renderItem={(item) => <Item item={item} />}
-            keyExtractor={(item) => `${item.id}-${Math.random()}` }
+            keyExtractor={(item) => `${item.id}-${Math.random()}`}
             ItemSeparatorComponent={flatlistSeparator}
           />
         </View>

@@ -105,7 +105,7 @@ export const GameIndividual = observer(function GameIndividual(props: SetupGameP
     navigation.navigate("playGame", { gameId })
   }
 
-  const [playerCount, setPlayerCount] = useState(null)
+  // const [playerCount, setPlayerCount] = useState(null)
 
   // TODO: on press, setPlayerCount ----> if playerCount === button, change the style sheet
 

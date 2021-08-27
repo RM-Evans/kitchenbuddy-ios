@@ -91,6 +91,7 @@ const SIGNUP_REDIRECT_LINK: TextStyle = {
 export const MainMenu = observer(function MainMenu() {
   const { soundMatchStore } = useStores()
 
+  // * FOR DEBUGGING -  CLEAR STORES
   const resetEverything = () => {
     const result = Alert.alert(
       "Delete Everything?",
@@ -124,8 +125,6 @@ export const MainMenu = observer(function MainMenu() {
   }
 
   const navigation = useNavigation()
-  // const nextScreen = () => navigation.navigate("login")
-  // const goBack = () => navigation.goBack()
 
   const goLogin = () => navigation.navigate("login")
 
@@ -134,7 +133,6 @@ export const MainMenu = observer(function MainMenu() {
   // const goChooseDifficulty = () => navigation.navigate("choose_difficulty")
 
   const goChooseDifficultyAndTitle = () => navigation.navigate("choose_title_difficulty")
-
 
   return (
     <View testID="LoginScreen" style={FULL}>
@@ -147,7 +145,7 @@ export const MainMenu = observer(function MainMenu() {
                 titleStyle={HEADER_TITLE}
                 /> */}
 
-        <PlaySoundTest />
+        {/* <PlaySoundTest /> */}
 
         {/* <Button style={MENU_BUTTONS} onPress={doTheThing}>
           <Text style={MENU_BUTTONS_TEXT}>TESTSOUND</Text>
@@ -169,11 +167,11 @@ export const MainMenu = observer(function MainMenu() {
 
         {/* FOR DEVVING */}
 
-        <Text style={SIGNUP_REDIRECT_TEXT}>
+        {/* <Text style={SIGNUP_REDIRECT_TEXT}>
           <Text style={SIGNUP_REDIRECT_LINK} onPress={resetEverything}>
             Delete all games and data (DEBUG)
           </Text>
-        </Text>
+        </Text> */}
 
         <Text style={SIGNUP_REDIRECT_TEXT}>
           Already have an account?

@@ -118,7 +118,7 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
     }
 
     const pairs = model.pairs.map((p) => {
-      console.log('what have we here', p)
+      console.log("what have we here", p)
       const { questionSound, answerSound } = p
       return {
         questionSound,
@@ -162,13 +162,13 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
           </Button>
 
           {/* FOR DEVVING */}
-          <Text style={SIGNUP_REDIRECT_TEXT}>
+          {/* <Text style={SIGNUP_REDIRECT_TEXT}>
             main menu
             <Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}>
               {" "}
               menu{" "}
             </Text>
-          </Text>
+          </Text> */}
         </SafeAreaView>
       </Screen>
     </View>

@@ -29,7 +29,7 @@ export function PlaySoundTest() {
         console.warn("failed", err)
       })
 
-    alert("nope")
+    // alert("nope")
   }
 
   function FlatListPlay() {

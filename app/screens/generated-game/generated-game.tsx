@@ -11,6 +11,7 @@ import { useStores } from "../../models"
 import { SoundMatchGame } from "../../models/sound-match/sound-match-game"
 
 import { ResolvableSound } from "../../components/sound-player/sound-library-sounds"
+import { palette } from "../../theme/palette"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -59,15 +60,18 @@ const MATCHING_PIECES_CONTAINER: ViewStyle = {
 //   paddingBottom: 20,
 // }
 
-//divisble by 3 - rows of 3,
+//divisible by 3 - rows of 3,
 const BUTTONS: ViewStyle = {
   marginHorizontal: spacing[3],
   paddingVertical: spacing[2],
   marginTop: 10,
   borderRadius: 100,
 
-  height: 90,
-  width: 90,
+  // height: 90,
+  // width: 90,
+
+  height: 100,
+  width: 100,
 
   shadowColor: color.palette.darkBlue,
   shadowOffset: {
@@ -92,7 +96,7 @@ const ACTIVATED_BUTTONS: ViewStyle = {
 }
 
 //todo -- if NOT a pair, BRIEFLY assign the buttons this style --- THEN go back to default style BUTTONS
-const COMPLETED_BUTTONS: ViewStyle = {
+const IS_MATCH_BUTTONS: ViewStyle = {
   ...BUTTONS,
   backgroundColor: color.palette.btnGreen,
   borderWidth: 1,
@@ -100,17 +104,41 @@ const COMPLETED_BUTTONS: ViewStyle = {
   shadowOpacity: 0,
 }
 
-const NOT_A_PAIR_BUTTONS: ViewStyle = {
-  ...BUTTONS,
-  backgroundColor: color.palette.angry,
-  borderWidth: 1,
+// const NOT_A_PAIR_BUTTONS: ViewStyle = {
+//   ...BUTTONS,
+//   backgroundColor: color.palette.angry,
+//   borderWidth: 1,
+// }
+
+// //todo -- if its a pair, assign the buttons this style
+// const YES_A_PAIR_BUTTONS: ViewStyle = {
+//   ...BUTTONS,
+//   backgroundColor: color.palette.btnGreen,
+//   borderWidth: 1,
+// }
+
+// styles for the revealText toggle switch -- toggleText()
+
+// - HIDDEN and DEFAULT text for buttons (q.children)
+const HIDE_TEXT: TextStyle = {
+  opacity: 0,
+}
+// - VISIBLE text style for rendered children of buttons (eg: q.text)
+const SHOW_BUTTON_TEXT: TextStyle = {
+  ...TEXT,
+  ...BOLD,
+  fontSize: 12,
+  opacity: 1,
 }
 
-//todo -- if its a pair, assign the buttons this style
-const YES_A_PAIR_BUTTONS: ViewStyle = {
-  ...BUTTONS,
-  backgroundColor: color.palette.btnGreen,
-  borderWidth: 1,
+const TOGGLE_TEXT_BUTTON: ViewStyle = {
+  height: 40,
+  width: 100,
+  alignSelf: "center",
+  marginTop: 50,
+  backgroundColor: color.transparent,
+  borderColor: palette.darkBlue,
+  borderWidth: 2,
 }
 
 const HEADER: TextStyle = {
@@ -149,10 +177,13 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
 
   const [completed, setCompleted] = useState<any[]>([])
 
+  const [mismatched, setMismatched] = useState<any[]>([])
+
+  const [revealText, setRevealText] = useState<boolean>(false)
+
   const isCompleted = (target) =>
     completed.findIndex((id) => id === (target.id !== undefined ? target.id : target)) >= 0
 
-  // TODO rme - step 2: make this use the data ResolvableSound with the data
   if (!questions && game.pairs.length) {
     const tmp: any[] = []
     let qid = 0
@@ -188,6 +219,11 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
     sound.play().catch((err) => {
       console.warn("failed", err)
     })
+
+    if (completed.findIndex((id) => id === q.id) >= 0) {
+      return
+    }
+
     // const activatedButtonStyle = ACTIVATED_BUTTONS
     // const defaultButtonStyle = BUTTONS
     // const notAPairStyle = NOT_A_PAIR_BUTTONS
@@ -205,13 +241,21 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
           navigation.navigate("main_menu")
         }
       } else {
-        console.log("no")
+        setMismatched([activated.id, q.id])
       }
       setActivated(null)
     } else {
       setActivated(q)
+      setMismatched([])
       // return `style={defaultButtonStyle`
     }
+  }
+
+  //conditially render "revealText" -- text appears on button if the user toggles switch
+
+  //toggle for showing and hiding text
+  const toggleText = (q: any) => {
+    setRevealText(!revealText)
   }
 
   return (
@@ -227,21 +271,49 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
         </View> */}
         {/* turns */}
         <View style={MATCHING_PIECES_CONTAINER}>
+          {/* <Text style={{ color: "black" }}>
+            {JSON.stringify(completed)}
+            {JSON.stringify(mismatched)}
+            {JSON.stringify(questions)}
+          </Text> */}
+
           {questions &&
             questions.map((q) => {
-              const isComplete = isCompleted(q)
+              const isMatched = isCompleted(q)
               const isActive = activated && activated.id === q.id
+              const isIncorrect = mismatched && mismatched.findIndex((id) => id === q.id) >= 0
 
               let style = BUTTONS
-              if (isComplete) {
-                style = COMPLETED_BUTTONS
+
+              if (isMatched) {
+                style = IS_MATCH_BUTTONS
               } else if (isActive) {
                 style = ACTIVATED_BUTTONS
+              } else if (isIncorrect) {
+                style = { ...BUTTONS, backgroundColor: "#ff0000" }
               }
 
-              return <Button key={q.id} onPress={() => pressed(q)} style={style} text={q.text} />
+              //optional toggle text using style
+              let textStyle = revealText ? SHOW_BUTTON_TEXT : HIDE_TEXT
+
+              return (
+                <Button
+                  key={q.id}
+                  onPress={() => pressed(q)}
+                  style={style}
+                  textStyle={textStyle}
+                  text={revealText ? q.text : ""}
+                  //optionally use `text={revealText ? q.text : ""}` rather than styling to toggle q.text
+                />
+              )
             })}
         </View>
+        <Button
+          onPress={toggleText}
+          style={TOGGLE_TEXT_BUTTON}
+          textStyle={{ ...TEXT, ...BOLD, fontSize: 12 }}
+          text={revealText ? "hide text" : "reveal text"}
+        ></Button>
       </Screen>
     </View>
   )
