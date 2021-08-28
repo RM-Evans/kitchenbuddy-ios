@@ -1,8 +1,8 @@
 import * as React from "react"
 import { View, TouchableOpacity } from "react-native"
-import { Button } from "../button/button"
-import { Text } from "../text/text"
-import { COW_NAME, COW_SOUND } from "./sound-library-sounds"
+// import { Button } from "../button/button"
+// import { Text } from "../text/text"
+import { COW_NAME, COW_SOUND, ResolvableSound } from "./sound-library-sounds"
 // @ts-ignore
 import DoThing from "../../../assets/DoThing.svg"
 import { palette } from "../../theme/palette"
@@ -19,14 +19,19 @@ const PLAY_BUTTON = {
   // borderStyle: "solid",
 }
 
-export function PlaySoundTest() {
+export type PlaySoundTestProps = {
+  item: any
+}
+export function PlaySoundTest(props: PlaySoundTestProps) {
   const playTheSound = async () => {
-    COW_NAME.play()
+    const sound = new ResolvableSound(props.item.soundFile)
+    sound
+      .play()
       .then((e) => {
-        console.log("success on demo")
+        console.log("success on " + props.item.soundFile)
       })
       .catch((err) => {
-        console.warn("failed", err)
+        console.warn("failed on", props.item, err)
       })
 
     // alert("nope")

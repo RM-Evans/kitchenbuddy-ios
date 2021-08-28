@@ -54,7 +54,7 @@ const CONTINUE_TEXT: TextStyle = {
   fontSize: 13,
   letterSpacing: 2,
 }
-const FOOTER: ViewStyle = { backgroundColor: color.palette.transparent }
+const FOOTER: ViewStyle = { backgroundColor: color.transparent }
 const FOOTER_CONTENT: ViewStyle = {
   paddingVertical: spacing[6],
   paddingHorizontal: spacing[5],

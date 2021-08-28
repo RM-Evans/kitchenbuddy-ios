@@ -18,8 +18,6 @@ import { PlaySoundTest } from "../../components"
 // @ts-ignore
 // import DoThing from "../../../assets/DoThing.svg"
 
-//TODO: HOOK UP SOUNDS TO OBJECTS - RIGHT NOW ITS JUST PLAYING THE HARDCODED SOUND
-
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
 const TEXT: TextStyle = {
@@ -194,12 +192,14 @@ const DATA = [
   },
 ]
 
+//pass item.soundFile to the sound player WITH PROPS
+
 // select
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[LIST_CARD, backgroundColor]}>
     {/* <DoThing style={PLAY_BUTTON} /> */}
     <Text style={ITEM_TEXT}>{item.title}</Text>
-    <PlaySoundTest />
+    <PlaySoundTest item={item} />
     {/* <Button style={PLAY_BUTTON} text="play"/> */}
     {/* <Text style={{ ...TEXT, paddingLeft: 20 }}>{item.title}</Text> */}
   </TouchableOpacity>
@@ -292,7 +292,7 @@ export const DummyModal = observer(function DummyModal(props: DummyModalProps) {
 
           <View>
             <Button
-              //TODO -- when selected === 1, then change background color of button to tell user that I can confirm
+              // when selected === 1, then change background color of button to tell user that I can confirm
               // style={[styles.button, styles.buttonClose]}
               style={{
                 height: 100,
