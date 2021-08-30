@@ -1,4 +1,4 @@
-# Welcome to your new ignited app!
+# Welcome to your new ignited app!!
 
 ```
 # you might also need to do this: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
