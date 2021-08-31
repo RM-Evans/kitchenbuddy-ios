@@ -18,7 +18,7 @@ npx ignite-cli new MyApp
 
 ```
 - Make sure to deactive "automatically manage profiles"
-- 
+- run `fastlane match` and then `fastlane build` in ios
 
 ```
 
