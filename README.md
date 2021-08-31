@@ -14,6 +14,16 @@ npx ignite-cli new MyApp
 
 
 
+
+
+```
+- Make sure to deactive "automatically manage profiles"
+- 
+
+```
+
+
+
 [![CircleCI](https://circleci.com/gh/infinitered/ignite.svg?style=svg)](https://circleci.com/gh/infinitered/ignite)
 
 ## The latest and greatest boilerplate for Infinite Red opinions
