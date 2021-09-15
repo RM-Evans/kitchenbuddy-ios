@@ -38,7 +38,11 @@ platform :ios do
     #   use_bundle_exec: false
     # )
     # match(type: "appstore", readonly: true) # more information: https://codesigning.guide
-    match(type: "adhoc", app_identifier: "io.hexly.SoundFave") # more information: https://codesigning.guide
+    match(
+      type: "adhoc", 
+      app_identifier: "io.hexly.SoundFave",
+      git_basic_authorization: Base64.strict_encode64(ENV["MATCH_AUTHORIZATION"]),
+    ) # more information: https://codesigning.guide
     # build_app(workspace: "KitchenBuddy.xcworkspace", scheme: "KitchenBuddy")
     # build_app(
     #   scheme: "XomlySell",
