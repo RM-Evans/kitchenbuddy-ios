@@ -20,6 +20,7 @@ jobs:
         uses: maierj/fastlane-action@v1.4.0
         with:
           lane: ios beta
+          subdirectory: 'ios'
         env:
           S3_ACCESS_KEY: '${{ secrets.S3_ACCESS_KEY }}'
           S3_SECRET_ACCESS_KEY: '${{ secrets.S3_SECRET_ACCESS_KEY }}'
