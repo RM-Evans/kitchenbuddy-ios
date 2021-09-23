@@ -16,6 +16,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
         
+        
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          TEST_KEY: ${{ secrets.FASTLANE_PRIVATE_KEY }}
+        run: |
+          echo "WTF $TEST_KEY !!!!"
+        
       - uses: webfactory/ssh-agent@v0.1.1
         env: 
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
