@@ -32,6 +32,15 @@ jobs:
 #         with:
 #           ssh-private-key: ${{ secrets.FASTLANE_PRIVATE_KEY }}
 
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.FASTLANE_PRIVATE_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.FASTLANE_KNOWN_HOSTS }}
+#           config: ${{ secrets.CONFIG }} # ssh_config; optional
+          if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
