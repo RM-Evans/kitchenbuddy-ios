@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
+        
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+          ssh-private-key: ${{ secrets.FASTLANE_SOUNDFAVE_PK }}
 
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
@@ -24,7 +28,8 @@ jobs:
         env:
           S3_ACCESS_KEY: '${{ secrets.S3_ACCESS_KEY }}'
           S3_SECRET_ACCESS_KEY: '${{ secrets.S3_SECRET_ACCESS_KEY }}'
-          MATCH_AUTHORIZATION: '${{ secrets.MATCH_AUTHORIZATION }}'
+          MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
+          # MATCH_AUTHORIZATION: '${{ secrets.MATCH_AUTHORIZATION }}'
           # AUTH_PRIVATE_KEY: '${{ secrets.AUTH_PRIVATE_KEY }}'
 
 
