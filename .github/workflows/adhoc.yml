@@ -22,13 +22,15 @@ jobs:
         env:
           TEST_KEY: ${{ secrets.FASTLANE_PRIVATE_KEY }}
         run: |
-          echo "WTF $TEST_KEY !!!!"
+          echo "$TEST_KEY" > /tmp/fastlane_key
+          chmod 600 /tmp/fastlane_key
+          ls -alh /tmp
         
-      - uses: webfactory/ssh-agent@v0.1.1
-        env: 
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-        with:
-          ssh-private-key: ${{ secrets.FASTLANE_PRIVATE_KEY }}
+#       - uses: webfactory/ssh-agent@v0.1.1
+#         env: 
+#           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+#         with:
+#           ssh-private-key: ${{ secrets.FASTLANE_PRIVATE_KEY }}
 
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
@@ -39,6 +41,7 @@ jobs:
           S3_ACCESS_KEY: '${{ secrets.S3_ACCESS_KEY }}'
           S3_SECRET_ACCESS_KEY: '${{ secrets.S3_SECRET_ACCESS_KEY }}'
           MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
+          MATCH_GIT_PRIVATE_KEY: '/tmp/fastlane_key'
           # MATCH_AUTHORIZATION: '${{ secrets.MATCH_AUTHORIZATION }}'
           # AUTH_PRIVATE_KEY: '${{ secrets.AUTH_PRIVATE_KEY }}'
 
