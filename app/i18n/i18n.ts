@@ -8,6 +8,8 @@ i18n.translations = { en, ja }
 
 i18n.locale = Localization.locale || "en"
 
+//takes json file and translates
+
 /**
  * Builds up valid keypaths for translations.
  * Update to your default locale of choice if not English.

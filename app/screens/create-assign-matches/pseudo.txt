@@ -1,0 +1,132 @@
+const data = {
+  name: "Animal Match",
+  round: 1,
+  questions: [
+    {
+      id: 1,
+      question: {
+        prompt: "ROAR!",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-wild-lion-animal-roar-6.mp3,
+      },
+      answer: {
+        prompt: "Lion",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_LION.mp3",
+        image: "file://some/path/lion/mufasa.jpg",
+      },
+    },
+    {
+      id: 2,
+      question: {
+        prompt: "Honk!",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-flock-of-wild-geese-20.mp3",
+      },
+      answer: {
+        prompt: "Goose",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_GOOSE.mp3",
+        image: "file://some/path/duck/malard.jpg",
+      },
+    },
+    {
+      id: 3,
+      question: {
+        prompt: "Moo",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-cow-moo-1744.mp3",
+      },
+      answer: {
+        prompt: "Cow",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_COW.mp3",
+        image: "file://some/path/cow/bessy.jpg",
+      },
+    },
+        {
+      id: 4,
+      question: {
+        prompt: "Neigh",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-scared-horse-neighing-85.mp3",
+      },
+      answer: {
+        prompt: "Horse",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_HORSE.mp3",
+        image: "file://some/path/horse/horsie.jpg",
+      },
+    },
+            {
+      id: 5,
+      question: {
+        prompt: "Chirp",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-single-cricket-screech-1780.mp3",
+      },
+      answer: {
+        prompt: "Cricket",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_CRICKET.mp3",
+        image: "file://some/path/cricket/jiminy.jpg",
+      },
+    },
+     {
+      id: 6,
+      question: {
+        prompt: "meow",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-cartoon-kitty-begging-meow-92.mp3",
+      },
+      answer: {
+        prompt: "cat",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_CAT.mp3",
+        image: "file://some/path/cat/kitty.jpg",
+      },
+    },
+    {
+      id: 7,
+      question: {
+        prompt: "bark",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-dog-barking-twice-1.mp3",
+      },
+      answer: {
+        prompt: "dog",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_DOG.mp3",
+        image: "file://some/path/dog/doggy.jpg",
+      },
+    },
+        {
+      id: 8,
+      question: {
+        prompt: "bah",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-sheep-sounds-1741.mp3",
+      },
+      answer: {
+        prompt: "sheep",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_SHEEP.mp3",
+        image: "file://some/path/sheep/sheepish.jpg",
+      },
+    },
+            {
+      id: 9,
+      question: {
+        prompt: "Howl",
+        soundFile: "assets/sounds/ANIMAL SOUNDS/mixkit-lone-wolf-howling-1729.mp3",
+      },
+      answer: {
+        prompt: "wolf",
+        soundFile: "assets/sounds/ANIMAL NAME TTS/TTS_WOLF.mp3",
+        image: "file://some/path/wolf/wolfiemcwolfface.jpg",
+      },
+    },
+  ],
+}
+
+const addNewRow = () => {
+  // show the input panel
+}
+
+const onComplete = (question, answer) => {
+  // one day we'll make unique ids
+  const id = data.questions.length + 1
+  const q = {
+    id,
+    question,
+    answer,
+  }
+
+  data.questions.push(q)
+}
+
+// do the rest of the components / inputs / etc

@@ -343,6 +343,13 @@ PODS:
     - React
   - RNScreens (2.18.1):
     - React-Core
+  - RNSound (0.11.0):
+    - React
+    - RNSound/Core (= 0.11.0)
+  - RNSound/Core (0.11.0):
+    - React
+  - RNSVG (12.1.1):
+    - React
   - UMAppLoader (1.4.0)
   - UMBarCodeScannerInterface (5.4.0)
   - UMCameraInterface (5.4.0)
@@ -424,6 +431,8 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSound (from `../node_modules/react-native-sound`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - UMAppLoader (from `../node_modules/unimodules-app-loader/ios`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
@@ -531,6 +540,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-keychain"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   UMAppLoader:
     :path: "../node_modules/unimodules-app-loader/ios"
   UMBarCodeScannerInterface:
@@ -570,7 +583,7 @@ SPEC CHECKSUMS:
   EXLocalization: 5bed147f1d89804130bac4b64a0f72239953c398
   EXPermissions: 55cadfd11547c07a5390ba7eea63bd998a71018d
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 21258a8531e40dbeff46a0ad5bd251706666cdfa
+  FBReactNativeSpec: ea684ef64bc4a19bfb5db0197bc6fc9e183e423b
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -610,6 +623,8 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
+  RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   UMAppLoader: 515d02d30e29cf05bbe58f77c59f896840cc5895
   UMBarCodeScannerInterface: 77a5bebdc21106979a363bb057c4fbb46aacc171
   UMCameraInterface: 123f7ebc3f6d0915afd369f7133bf29231ed418b
@@ -626,6 +641,6 @@ SPEC CHECKSUMS:
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 87df84f176bbea7a2ba0925bd07700b5c04392cf
+PODFILE CHECKSUM: ef291485a0450843e33e74ed4a2a4a881f2d245c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

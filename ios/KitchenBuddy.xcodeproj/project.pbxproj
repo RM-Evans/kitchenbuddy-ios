@@ -15,8 +15,31 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* KitchenBuddyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KitchenBuddyTests.m */; };
+		44FBEEFA26CB6C5200940202 /* TTS_CAT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44FBEEF826CB6C5100940202 /* TTS_CAT.mp3 */; };
+		44FBEF2526CC764000940202 /* catMeow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44FBEF1A26CC763F00940202 /* catMeow.mp3 */; };
+		44FBEF2A26D1D34F00940202 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBEF2926D1D34F00940202 /* libRNSVG.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A4B148D367B119F99EC2C2E5 /* libPods-KitchenBuddy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEA568884090C1B008E181 /* libPods-KitchenBuddy.a */; };
+		CBEB1CEC26D56E8D0065DC43 /* dogBark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE226D56E8D0065DC43 /* dogBark.mp3 */; };
+		CBEB1CED26D56E8D0065DC43 /* sheepBah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE326D56E8D0065DC43 /* sheepBah.mp3 */; };
+		CBEB1CEE26D56E8D0065DC43 /* cowMoo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE426D56E8D0065DC43 /* cowMoo.mp3 */; };
+		CBEB1CEF26D56E8D0065DC43 /* flockOfGeese.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE526D56E8D0065DC43 /* flockOfGeese.mp3 */; };
+		CBEB1CF026D56E8D0065DC43 /* excitedMonkeyGrunt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE626D56E8D0065DC43 /* excitedMonkeyGrunt.mp3 */; };
+		CBEB1CF126D56E8D0065DC43 /* lionRoar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE726D56E8D0065DC43 /* lionRoar.mp3 */; };
+		CBEB1CF226D56E8D0065DC43 /* scaredHorseNeighing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE826D56E8D0065DC43 /* scaredHorseNeighing.mp3 */; };
+		CBEB1CF326D56E8D0065DC43 /* wolfHowl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CE926D56E8D0065DC43 /* wolfHowl.mp3 */; };
+		CBEB1CF426D56E8D0065DC43 /* singleCricketChirp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CEA26D56E8D0065DC43 /* singleCricketChirp.mp3 */; };
+		CBEB1CF526D56E8D0065DC43 /* roosterCrowing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CEB26D56E8D0065DC43 /* roosterCrowing.mp3 */; };
+		CBEB1D0426D56EAE0065DC43 /* TTS_ROOSTER.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFA26D56EAE0065DC43 /* TTS_ROOSTER.mp3 */; };
+		CBEB1D0526D56EAE0065DC43 /* TTS_LION.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFB26D56EAE0065DC43 /* TTS_LION.mp3 */; };
+		CBEB1D0626D56EAE0065DC43 /* TTS_CRICKET.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFC26D56EAE0065DC43 /* TTS_CRICKET.mp3 */; };
+		CBEB1D0726D56EAE0065DC43 /* TTS_HORSE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFD26D56EAE0065DC43 /* TTS_HORSE.mp3 */; };
+		CBEB1D0826D56EAE0065DC43 /* TTS_GOOSE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFE26D56EAE0065DC43 /* TTS_GOOSE.mp3 */; };
+		CBEB1D0926D56EAE0065DC43 /* TTS_DOG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1CFF26D56EAE0065DC43 /* TTS_DOG.mp3 */; };
+		CBEB1D0A26D56EAE0065DC43 /* TTS_COW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1D0026D56EAE0065DC43 /* TTS_COW.mp3 */; };
+		CBEB1D0B26D56EAE0065DC43 /* TTS_WOLF.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1D0126D56EAE0065DC43 /* TTS_WOLF.mp3 */; };
+		CBEB1D0C26D56EAE0065DC43 /* TTS_SHEEP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1D0226D56EAE0065DC43 /* TTS_SHEEP.mp3 */; };
+		CBEB1D0D26D56EAE0065DC43 /* TTS_MONKEY.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBEB1D0326D56EAE0065DC43 /* TTS_MONKEY.mp3 */; };
 		E0E402AF856107EC82190244 /* libPods-KitchenBuddy-KitchenBuddyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BE758935A381A571F5B21 /* libPods-KitchenBuddy-KitchenBuddyTests.a */; };
 /* End PBXBuildFile section */
 
@@ -53,9 +76,32 @@
 		301BE758935A381A571F5B21 /* libPods-KitchenBuddy-KitchenBuddyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KitchenBuddy-KitchenBuddyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32B04630CC446F19212E357A /* Pods-KitchenBuddy-KitchenBuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy-KitchenBuddyTests.release.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy-KitchenBuddyTests/Pods-KitchenBuddy-KitchenBuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		3ECD546F3378FD459F4E82B0 /* Pods-KitchenBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy.debug.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy/Pods-KitchenBuddy.debug.xcconfig"; sourceTree = "<group>"; };
+		44FBEEF826CB6C5100940202 /* TTS_CAT.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_CAT.mp3; sourceTree = "<group>"; };
+		44FBEF1A26CC763F00940202 /* catMeow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = catMeow.mp3; sourceTree = "<group>"; };
+		44FBEF2926D1D34F00940202 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40708BE521DBE7DC6E68C8 /* Pods-KitchenBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy.release.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy/Pods-KitchenBuddy.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = KitchenBuddy/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D3D2E99D3814D73E5353ACB /* Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig"; path = "Target Support Files/Pods-KitchenBuddy-KitchenBuddyTests/Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CBEB1CE226D56E8D0065DC43 /* dogBark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark.mp3; sourceTree = "<group>"; };
+		CBEB1CE326D56E8D0065DC43 /* sheepBah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sheepBah.mp3; sourceTree = "<group>"; };
+		CBEB1CE426D56E8D0065DC43 /* cowMoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cowMoo.mp3; sourceTree = "<group>"; };
+		CBEB1CE526D56E8D0065DC43 /* flockOfGeese.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flockOfGeese.mp3; sourceTree = "<group>"; };
+		CBEB1CE626D56E8D0065DC43 /* excitedMonkeyGrunt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = excitedMonkeyGrunt.mp3; sourceTree = "<group>"; };
+		CBEB1CE726D56E8D0065DC43 /* lionRoar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lionRoar.mp3; sourceTree = "<group>"; };
+		CBEB1CE826D56E8D0065DC43 /* scaredHorseNeighing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scaredHorseNeighing.mp3; sourceTree = "<group>"; };
+		CBEB1CE926D56E8D0065DC43 /* wolfHowl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolfHowl.mp3; sourceTree = "<group>"; };
+		CBEB1CEA26D56E8D0065DC43 /* singleCricketChirp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleCricketChirp.mp3; sourceTree = "<group>"; };
+		CBEB1CEB26D56E8D0065DC43 /* roosterCrowing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = roosterCrowing.mp3; sourceTree = "<group>"; };
+		CBEB1CFA26D56EAE0065DC43 /* TTS_ROOSTER.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_ROOSTER.mp3; sourceTree = "<group>"; };
+		CBEB1CFB26D56EAE0065DC43 /* TTS_LION.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_LION.mp3; sourceTree = "<group>"; };
+		CBEB1CFC26D56EAE0065DC43 /* TTS_CRICKET.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_CRICKET.mp3; sourceTree = "<group>"; };
+		CBEB1CFD26D56EAE0065DC43 /* TTS_HORSE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_HORSE.mp3; sourceTree = "<group>"; };
+		CBEB1CFE26D56EAE0065DC43 /* TTS_GOOSE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_GOOSE.mp3; sourceTree = "<group>"; };
+		CBEB1CFF26D56EAE0065DC43 /* TTS_DOG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_DOG.mp3; sourceTree = "<group>"; };
+		CBEB1D0026D56EAE0065DC43 /* TTS_COW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_COW.mp3; sourceTree = "<group>"; };
+		CBEB1D0126D56EAE0065DC43 /* TTS_WOLF.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_WOLF.mp3; sourceTree = "<group>"; };
+		CBEB1D0226D56EAE0065DC43 /* TTS_SHEEP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_SHEEP.mp3; sourceTree = "<group>"; };
+		CBEB1D0326D56EAE0065DC43 /* TTS_MONKEY.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TTS_MONKEY.mp3; sourceTree = "<group>"; };
 		EADEA568884090C1B008E181 /* libPods-KitchenBuddy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KitchenBuddy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -74,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FBEF2A26D1D34F00940202 /* libRNSVG.a in Frameworks */,
 				A4B148D367B119F99EC2C2E5 /* libPods-KitchenBuddy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,12 +176,49 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44FBEF2926D1D34F00940202 /* libRNSVG.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EADEA568884090C1B008E181 /* libPods-KitchenBuddy.a */,
 				301BE758935A381A571F5B21 /* libPods-KitchenBuddy-KitchenBuddyTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44FBEEFD26CC75AB00940202 /* ANIMAL NAME TTS */ = {
+			isa = PBXGroup;
+			children = (
+				CBEB1D0026D56EAE0065DC43 /* TTS_COW.mp3 */,
+				CBEB1CFC26D56EAE0065DC43 /* TTS_CRICKET.mp3 */,
+				CBEB1CFF26D56EAE0065DC43 /* TTS_DOG.mp3 */,
+				CBEB1CFE26D56EAE0065DC43 /* TTS_GOOSE.mp3 */,
+				CBEB1CFD26D56EAE0065DC43 /* TTS_HORSE.mp3 */,
+				CBEB1CFB26D56EAE0065DC43 /* TTS_LION.mp3 */,
+				CBEB1D0326D56EAE0065DC43 /* TTS_MONKEY.mp3 */,
+				CBEB1CFA26D56EAE0065DC43 /* TTS_ROOSTER.mp3 */,
+				CBEB1D0226D56EAE0065DC43 /* TTS_SHEEP.mp3 */,
+				CBEB1D0126D56EAE0065DC43 /* TTS_WOLF.mp3 */,
+				44FBEEF826CB6C5100940202 /* TTS_CAT.mp3 */,
+			);
+			path = "ANIMAL NAME TTS";
+			sourceTree = "<group>";
+		};
+		44FBEF1226CC762400940202 /* ANIMAL SOUNDS */ = {
+			isa = PBXGroup;
+			children = (
+				CBEB1CE426D56E8D0065DC43 /* cowMoo.mp3 */,
+				CBEB1CE226D56E8D0065DC43 /* dogBark.mp3 */,
+				CBEB1CE626D56E8D0065DC43 /* excitedMonkeyGrunt.mp3 */,
+				CBEB1CE526D56E8D0065DC43 /* flockOfGeese.mp3 */,
+				CBEB1CE726D56E8D0065DC43 /* lionRoar.mp3 */,
+				CBEB1CEB26D56E8D0065DC43 /* roosterCrowing.mp3 */,
+				CBEB1CE826D56E8D0065DC43 /* scaredHorseNeighing.mp3 */,
+				CBEB1CE326D56E8D0065DC43 /* sheepBah.mp3 */,
+				CBEB1CEA26D56E8D0065DC43 /* singleCricketChirp.mp3 */,
+				CBEB1CE926D56E8D0065DC43 /* wolfHowl.mp3 */,
+				44FBEF1A26CC763F00940202 /* catMeow.mp3 */,
+			);
+			path = "ANIMAL SOUNDS";
 			sourceTree = "<group>";
 		};
 		71ED362ACEA45F9F60DCD285 /* Pods */ = {
@@ -145,7 +229,6 @@
 				8D3D2E99D3814D73E5353ACB /* Pods-KitchenBuddy-KitchenBuddyTests.debug.xcconfig */,
 				32B04630CC446F19212E357A /* Pods-KitchenBuddy-KitchenBuddyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -159,6 +242,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				44FBEF1226CC762400940202 /* ANIMAL SOUNDS */,
+				44FBEEFD26CC75AB00940202 /* ANIMAL NAME TTS */,
 				13B07FAE1A68108700A75B9A /* KitchenBuddy */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* KitchenBuddyTests */,
@@ -278,7 +363,9 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 9LGAC76C93;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -325,6 +412,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				CBEB1CF526D56E8D0065DC43 /* roosterCrowing.mp3 in Resources */,
+				CBEB1CF026D56E8D0065DC43 /* excitedMonkeyGrunt.mp3 in Resources */,
+				CBEB1D0C26D56EAE0065DC43 /* TTS_SHEEP.mp3 in Resources */,
+				CBEB1D0626D56EAE0065DC43 /* TTS_CRICKET.mp3 in Resources */,
+				CBEB1D0726D56EAE0065DC43 /* TTS_HORSE.mp3 in Resources */,
+				CBEB1D0926D56EAE0065DC43 /* TTS_DOG.mp3 in Resources */,
+				44FBEF2526CC764000940202 /* catMeow.mp3 in Resources */,
+				CBEB1CEE26D56E8D0065DC43 /* cowMoo.mp3 in Resources */,
+				CBEB1CF326D56E8D0065DC43 /* wolfHowl.mp3 in Resources */,
+				CBEB1D0526D56EAE0065DC43 /* TTS_LION.mp3 in Resources */,
+				CBEB1D0426D56EAE0065DC43 /* TTS_ROOSTER.mp3 in Resources */,
+				CBEB1CF226D56E8D0065DC43 /* scaredHorseNeighing.mp3 in Resources */,
+				CBEB1D0826D56EAE0065DC43 /* TTS_GOOSE.mp3 in Resources */,
+				CBEB1CF426D56E8D0065DC43 /* singleCricketChirp.mp3 in Resources */,
+				CBEB1CF126D56E8D0065DC43 /* lionRoar.mp3 in Resources */,
+				CBEB1CEF26D56E8D0065DC43 /* flockOfGeese.mp3 in Resources */,
+				CBEB1D0D26D56EAE0065DC43 /* TTS_MONKEY.mp3 in Resources */,
+				CBEB1D0B26D56EAE0065DC43 /* TTS_WOLF.mp3 in Resources */,
+				CBEB1D0A26D56EAE0065DC43 /* TTS_COW.mp3 in Resources */,
+				44FBEEFA26CB6C5200940202 /* TTS_CAT.mp3 in Resources */,
+				CBEB1CEC26D56E8D0065DC43 /* dogBark.mp3 in Resources */,
+				CBEB1CED26D56E8D0065DC43 /* sheepBah.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +477,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KitchenBuddy-KitchenBuddyTests/Pods-KitchenBuddy-KitchenBuddyTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -480,7 +589,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KitchenBuddy/Pods-KitchenBuddy-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -631,7 +740,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LGAC76C93;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KitchenBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -640,8 +751,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.hexly.SoundFave;
 				PRODUCT_NAME = KitchenBuddy;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.hexly.SoundFave";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -654,7 +766,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LGAC76C93;
 				INFOPLIST_FILE = KitchenBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -662,8 +776,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.hexly.SoundFave;
 				PRODUCT_NAME = KitchenBuddy;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.hexly.SoundFave";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

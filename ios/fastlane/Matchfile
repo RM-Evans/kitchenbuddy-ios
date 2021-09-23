@@ -1,0 +1,9 @@
+git_url("git@github.com:dwelch2344/fastlane-soundfave.git")
+
+storage_mode("git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier(["io.hexly.SoundFave"])
+username("apple.developer@hexly.io") # Your Apple Developer Portal username
+team_id("9LGAC76C93")
