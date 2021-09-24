@@ -51,6 +51,7 @@ jobs:
           S3_SECRET_ACCESS_KEY: '${{ secrets.S3_SECRET_ACCESS_KEY }}'
           MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
           MATCH_GIT_PRIVATE_KEY: '/tmp/fastlane_key'
+          FASTLANE_PASSWORD: '${{ secrets.FASTLANE_PASSWORD }}'
           # MATCH_AUTHORIZATION: '${{ secrets.MATCH_AUTHORIZATION }}'
           # AUTH_PRIVATE_KEY: '${{ secrets.AUTH_PRIVATE_KEY }}'
 
