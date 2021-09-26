@@ -1,5 +1,5 @@
 app_identifier("io.hexly.SoundFave") # The bundle identifier of your app
-apple_id("apple.developer@hexly.io") # Your Apple email address
+# apple_id("apple.developer@hexly.io") # Your Apple email address
 
 itc_team_id("119538632") # App Store Connect Team ID
 team_id("9LGAC76C93") # Developer Portal Team ID
