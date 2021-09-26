@@ -6,5 +6,5 @@ storage_mode("git")
 type("adhoc") # The default type, can be: appstore, adhoc, enterprise or development
 
 app_identifier(["io.hexly.SoundFave"])
-username("dave@hexly.io") # Your Apple Developer Portal username
+# username("dave@hexly.io") # Your Apple Developer Portal username
 team_id("9LGAC76C93")
