@@ -39,22 +39,23 @@ platform :ios do
     # )
       
       
-#     api_key = app_store_connect_api_key(
-#         # key_id: "#{ENV['APPLE_APPSTORE_KEY_ID']}",
-#         key_id: "H6Q2FDQYXH",
-#         # issuer_id: "#{ENV['APPLE_APPSTORE_ISSUER_ID']}",
-#         issuer_id: "0dd77eb6-3776-46a6-84bd-efbf59a2e9a6",
-#         #             key_filepath: "#{ENV['BITRISEIO_APPSTORE_API_FILE_PATH']}",
-#         key_filepath: "/tmp/connect_key"
-#         duration: 1200, # optional (maximum 1200)
-#         in_house: false, # optional but may be required if using match/sigh
-#     )
+    api_key = app_store_connect_api_key(
+        # key_id: "#{ENV['APPLE_APPSTORE_KEY_ID']}",
+        key_id: "H6Q2FDQYXH",
+        # issuer_id: "#{ENV['APPLE_APPSTORE_ISSUER_ID']}",
+        issuer_id: "0dd77eb6-3776-46a6-84bd-efbf59a2e9a6",
+        #             key_filepath: "#{ENV['BITRISEIO_APPSTORE_API_FILE_PATH']}",
+        key_filepath: "/tmp/connect_key"
+        duration: 1200, # optional (maximum 1200)
+        in_house: false, # optional but may be required if using match/sigh
+    )
 
       
     # match(type: "appstore", readonly: true) # more information: https://codesigning.guide
     match(
       type: "adhoc", 
       app_identifier: "io.hexly.SoundFave",
+      api_key: api_key,
       # git_basic_authorization: Base64.strict_encode64(ENV["MATCH_AUTHORIZATION"]),
     ) # more information: https://codesigning.guide
     # build_app(workspace: "KitchenBuddy.xcworkspace", scheme: "KitchenBuddy")
