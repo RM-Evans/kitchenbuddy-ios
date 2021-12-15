@@ -15,7 +15,10 @@ target 'KitchenBuddy' do
   )
 
 
-  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
+  pod 'RNSoundRecorder', :path => '../node_modules/react-native-sound-recorder'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   target 'KitchenBuddyTests' do
     inherit! :complete

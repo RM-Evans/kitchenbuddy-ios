@@ -1,4 +1,11 @@
+# Dave Notes
+
+Might be useful to use these:
+- Command Line XCode set? Use this: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`
+
+
 # Welcome to your new ignited app!!
+
 
 ```
 # you might also need to do this: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer

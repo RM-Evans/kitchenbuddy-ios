@@ -4,8 +4,10 @@ export class ResolvableSound {
   private sound?: Sound
   private promise?: Promise<void>
   
-  constructor(private file: string, private bundle = Sound.MAIN_BUNDLE) {}
-  
+  constructor(private file: string, private bundle = Sound.MAIN_BUNDLE) {
+
+  }
+
 
   async play(): Promise<void>{
 
