@@ -212,13 +212,13 @@ export const LoginScreen = observer(function LoginScreen() {
             <Text style={LOGIN_SUBMIT_BTN_TEXT}>login</Text>
           </Button>
         </View>
-
+{/* 
         <Text style={SIGNUP_REDIRECT_TEXT}>
           <Text style={[SIGNUP_REDIRECT_LINK, { opacity: 1, fontSize: 20 }]} onPress={goMainMenu}>
             {" "}
             menu{" "}
           </Text>
-        </Text>
+        </Text> */}
 
         <Text style={SIGNUP_REDIRECT_TEXT}>
           Don't have an account?

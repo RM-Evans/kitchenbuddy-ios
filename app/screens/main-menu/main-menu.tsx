@@ -176,10 +176,8 @@ export const MainMenu = observer(function MainMenu() {
         </Text> */}
 
         <Text style={SIGNUP_REDIRECT_TEXT}>
-          Already have an account?
           <Text style={SIGNUP_REDIRECT_LINK} onPress={goLogin}>
-            {" "}
-            Login{" "}
+            Logout
           </Text>
         </Text>
       </Screen>
