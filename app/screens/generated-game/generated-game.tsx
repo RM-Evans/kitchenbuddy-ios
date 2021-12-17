@@ -135,7 +135,7 @@ const TOGGLE_TEXT_BUTTON: ViewStyle = {
   height: 40,
   width: 100,
   alignSelf: "center",
-  marginTop: 50,
+  marginTop: 150,
   backgroundColor: color.transparent,
   borderColor: palette.darkBlue,
   borderWidth: 2,
@@ -190,15 +190,15 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
     game.pairs.forEach((e) => {
       const q: any = {
         id: qid++,
-        text: e.questionText,
-        sound: e.questionSound,
+        text: e.question.title,
+        sound: e.question.path,
         type: "question",
         sourceId: e.id,
       }
       const a: any = {
         id: qid++,
-        text: e.answerText,
-        sound: e.answerSound,
+        text: e.answer.title,
+        sound: e.answer.path,
         type: "answer",
         sourceId: e.id,
       }
@@ -253,11 +253,6 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
 
   //conditially render "revealText" -- text appears on button if the user toggles switch
 
-  //toggle for showing and hiding text
-  const toggleText = (q: any) => {
-    setRevealText(!revealText)
-  }
-
   return (
     <View testID="GeneratedGameScreen" style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
@@ -309,7 +304,7 @@ export const GeneratedGame = observer(function GeneratedGame(props: PlayGameProp
             })}
         </View>
         <Button
-          onPress={toggleText}
+          onPress={() => setRevealText(!revealText)}
           style={TOGGLE_TEXT_BUTTON}
           textStyle={{ ...TEXT, ...BOLD, fontSize: 12 }}
           text={revealText ? "hide text" : "reveal text"}

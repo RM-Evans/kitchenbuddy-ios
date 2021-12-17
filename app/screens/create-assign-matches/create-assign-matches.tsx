@@ -8,8 +8,9 @@ import { color, spacing, typography } from "../../theme"
 
 import { AssignMatchesProps } from "../../navigators/main-navigator"
 
-import Pairing, { PairType } from "./pairing"
+// import Pairing, { PairType } from "./pairing"
 import { useStores } from "../../models"
+import AudioLibrary from "../../components/audio-library/audio-library"
 
 // import { DummyRow } from "./dummy-row"
 
@@ -98,14 +99,10 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
   const { title, pairCount } = props.route.params
   const defaultModel: ModelType = { pairs: [] }
   for (let i = 0; i < props.route.params.pairCount; i++) {
-    defaultModel.pairs.push({ question: "", answer: "" })
+    defaultModel.pairs.push({})
   }
 
   const [model, setModel] = useState<ModelType>(defaultModel)
-  const pairSetter = (idx: number) => (pair: PairType) => {
-    model.pairs[idx] = pair
-    setModel({ ...model })
-  }
 
   const isMissing = model.pairs.reduce(
     (prev, pair) => prev || (pair.question === "" && pair.answer === ""),
@@ -117,24 +114,90 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
       return alert('Please fill in all the "Q?" and "A?" pairs to continue')
     }
 
-    const pairs = model.pairs.map((p) => {
-      console.log("what have we here", p)
-      const { questionSound, answerSound } = p
-      return {
-        questionSound,
-        answerSound,
-        questionText: p.question,
-        answerText: p.answer,
-      }
-    })
+    const pairs = model.pairs.map((p) => ({
+      question: p.question.id,
+      answer: p.answer.id
+    }))
+    console.log(pairs)
     soundMatchStore.createGame(title, pairs)
 
     goMainMenu()
   }
 
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [target, setTarget] = useState<{ idx: number, type: 'question' | 'answer'} | undefined>()
+  const [selected, setSelected] = useState<any | undefined>()
+  const showModal = (type: 'question' | 'answer', idx: number) => () => {
+    console.log('sup', target, type)
+    // modal already open
+    if( !target ){
+      setTarget({ idx, type })
+      setModalVisible(true)
+      setSelected(undefined)
+    }
+  }
+
+  const chooseSound = (sound?: any) => {
+    if( target ){
+      const pair = model.pairs[target.idx]
+      pair[target.type] = sound
+      setModel({ ...model })
+
+      setSelected(undefined)
+      setModalVisible(false)
+      setTarget(undefined)
+    }
+  }
+
+  const components = modalVisible 
+    ? (
+      <React.Fragment>
+        <AudioLibrary onSelected={setSelected} controls={{ add: true, delete: false, select: true }} />
+        <Button disabled={!selected} style={ { ...MATCH_ASSIGN_BUTTONS, ...(selected ? {} : {backgroundColor: 'gray'}) }} onPress={() => chooseSound(selected)} text="Continue"/>
+        {/* <Text>{ selected ? 'yes' : 'no' }</Text> */}
+      </React.Fragment>
+    )
+    : (
+      <React.Fragment>
+        <View style={TITLE_FORM_CONTAINER}>
+            <Text style={GAME_TITLE_AND_DIFFICULTY} text={props.route.params.title} />
+          </View>
+
+        <View>
+          {model.pairs.map((pair: PairType, idx: number) => (
+            // <View key={idx}>
+              // <Text>{ JSON.stringify(pair) }</Text>
+              <View style={MATCH_ASSIGN_BUTTONS_CONTAINER} key={idx}>
+                <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('question', idx)}>
+                  <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+                    { pair.question?.title || pair.question?.id || 'Q?' }
+                  </Text>
+                </Button>
+
+                <View style={BTN_CONNECTOR}></View>
+
+                <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('answer', idx)}>
+                  <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+                    { pair.answer?.title || pair.answer?.id || 'A?' }
+                  </Text>
+                </Button>
+              </View>
+            // </View>
+          ))}
+        </View>
+
+        <Button style={CREATE_BUTTON} onPress={doSave}>
+          <Text style={CREATE_BUTTON_TEXT}>CREATE</Text>
+        </Button>
+        
+      </React.Fragment>
+    ) 
+
+
   return (
     <View testID="AssignMatchesScreen" style={FULL}>
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
+      <View style={CONTAINER} >
         <SafeAreaView>
           <Header
             // headerTx="demoScreen.howTo"
@@ -142,35 +205,60 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
             onLeftPress={goBack}
             style={HEADER}
           />
-
-          <View style={TITLE_FORM_CONTAINER}>
-            <Text style={GAME_TITLE_AND_DIFFICULTY} text={props.route.params.title} />
-          </View>
-
-          <View>
-            {/* { model.pairs.map( (pair: PairType, idx: number) =>  <Text key={idx}> {idx} {pair.question} {pair.answer} </Text> ) }  */}
-            {model.pairs.map((pair: PairType, idx: number) => (
-              <Pairing key={idx} pair={pair} setPair={pairSetter(idx)} />
-            ))}
-          </View>
-
-          {/* dont use this component yet */}
-          {/* <DummyRow /> */}
-
-          <Button style={CREATE_BUTTON} onPress={doSave}>
-            <Text style={CREATE_BUTTON_TEXT}>CREATE</Text>
-          </Button>
-
-          {/* FOR DEVVING */}
-          {/* <Text style={SIGNUP_REDIRECT_TEXT}>
-            main menu
-            <Text style={SIGNUP_REDIRECT_LINK} onPress={goMainMenu}>
-              {" "}
-              menu{" "}
-            </Text>
-          </Text> */}
+          { components }
+          
         </SafeAreaView>
-      </Screen>
+      </View>
     </View>
   )
 })
+
+export type PairType = { 
+  question?: any, 
+  answer?: any, 
+} 
+
+const BTN_CONNECTOR: ViewStyle = {
+  top: 40,
+  width: 30,
+  height: 2,
+  marginHorizontal: -10,
+  justifyContent: "center",
+  backgroundColor: color.palette.black,
+}
+
+
+const MATCH_ASSIGN_BUTTONS_CONTAINER: ViewStyle = {
+  flex: 10,
+  justifyContent: "center",
+  flexDirection: "row",
+  paddingBottom: 120,
+}
+
+const MATCH_ASSIGN_BUTTONS: ViewStyle = {
+  marginHorizontal: spacing[3],
+  paddingVertical: spacing[2],
+  marginTop: 2,
+  borderRadius: 20,
+  height: 75,
+  width: 115,
+
+  backgroundColor: color.palette.skyBlue,
+  borderWidth: 2,
+  borderColor: color.palette.darkBlue,
+}
+
+// const BOLD: TextStyle = { fontWeight: "bold" }
+// const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
+// const TEXT: TextStyle = {
+//   ...PRIMARYTEXTCOLOR,
+//   fontFamily: typography.primary,
+// }
+
+
+const MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT: TextStyle = {
+  ...TEXT,
+  ...BOLD,
+  color: color.palette.offWhite,
+  fontSize: 20,
+}

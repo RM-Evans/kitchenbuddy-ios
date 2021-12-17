@@ -15,7 +15,7 @@ import {
  * Example store containing Rick and Morty characters
  */
 
-export type SoundMatchPairs = { questionText: string; answerText: string }[]
+export type SoundMatchPairs = { question: string; answer: string }
 
 export const SoundMatchStoreModel = types
   .model("SoundMatchStore")
@@ -30,7 +30,7 @@ export const SoundMatchStoreModel = types
     // },
   }))
   .actions((self) => ({
-    createGame: (title: string, pairings: SoundMatchPairs) => {
+    createGame: (title: string, pairings: SoundMatchPairs[]) => {
       console.log("create the game", title, pairings)
       const pairs = self.pairs || []
       const newPairs = []

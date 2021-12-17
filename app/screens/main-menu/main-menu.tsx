@@ -1,6 +1,4 @@
-import React, { useState, PermissionsAndroid, useEffect } from "react"
-import RNFS from 'react-native-fs'
-import SoundRecorder from 'react-native-sound-recorder';
+import React from "react"
  
 // TextInput HOC?
 import {
@@ -27,10 +25,6 @@ import { color, spacing, typography } from "../../theme"
 import { useStores } from "../../models"
 
 import AudioLibrary from "../../components/audio-library/audio-library";
-
-
-const SAVED_AUDIO_PATH = `${RNFS.DownloadDirectoryPath}/soundfave/`
-
 
 
 const FULL: ViewStyle = { flex: 1 }
@@ -149,9 +143,7 @@ export const MainMenu = observer(function MainMenu() {
     <View testID="LoginScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
 
-      <AudioLibrary/>
-
-        {/* <Header
+        {/* <Header0
                 headerText="login"
                 leftIcon="back"
                 onLeftPress={goBack}
@@ -165,7 +157,7 @@ export const MainMenu = observer(function MainMenu() {
           <Text style={MENU_BUTTONS_TEXT}>TESTSOUND</Text>
         </Button> */}
 
-        {/* <View style={MENU_BUTTONS_CONTAINER}>
+        <View style={MENU_BUTTONS_CONTAINER}>
           <Button style={MENU_BUTTONS} onPress={goGameLibrary}>
             <Text style={MENU_BUTTONS_TEXT}>PLAY</Text>
           </Button>
@@ -173,11 +165,7 @@ export const MainMenu = observer(function MainMenu() {
           <Button style={MENU_BUTTONS} onPress={goChooseDifficultyAndTitle}>
             <Text style={MENU_BUTTONS_TEXT}>CREATE GAME</Text>
           </Button>
-
-          <Button style={HOW_TO_PLAY_MENU_BUTTON} onPress={toggleRecording}>
-            <Text style={HOW_TO_PLAY_MENU_BUTTON_TEXT}>{ recordingStatusMessages[recordingStatus] || ('Unknown status: ' + recordingStatus) }</Text>
-          </Button>
-        </View> */}
+        </View>
 
         {/* FOR DEVVING */}
 

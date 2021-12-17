@@ -12,7 +12,7 @@ export class ResolvableSound {
   async play(): Promise<void>{
 
     let p = Promise.resolve()
-    if( !this.sound ){
+    if( !this.promise ){
       p = this.loadSound()
     }
     
