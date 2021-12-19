@@ -16,6 +16,7 @@ import AudioLibrary from "../../components/audio-library/audio-library"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
+  paddingVertical: 15,
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 }
@@ -47,7 +48,7 @@ const CREATE_BUTTON: ViewStyle = {
   marginHorizontal: spacing[8],
   paddingVertical: spacing[2],
   marginTop: 0,
-  marginBottom: 50,
+  marginBottom: 1,
   borderRadius: 20,
   height: 50,
 
@@ -69,18 +70,6 @@ const HEADER: TextStyle = {
   paddingTop: spacing[5],
   paddingBottom: spacing[2] - 2,
   paddingHorizontal: 0,
-}
-
-const SIGNUP_REDIRECT_TEXT: TextStyle = {
-  flex: 1,
-  ...TEXT,
-  textAlign: "center",
-}
-
-const SIGNUP_REDIRECT_LINK: TextStyle = {
-  ...TEXT,
-  ...BOLD,
-  textDecorationLine: "underline",
 }
 
 type ModelType = {
@@ -164,28 +153,29 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
             <Text style={GAME_TITLE_AND_DIFFICULTY} text={props.route.params.title} />
           </View>
 
-        <View>
-          {model.pairs.map((pair: PairType, idx: number) => (
-            // <View key={idx}>
-              // <Text>{ JSON.stringify(pair) }</Text>
-              <View style={MATCH_ASSIGN_BUTTONS_CONTAINER} key={idx}>
-                <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('question', idx)}>
-                  <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
-                    { pair.question?.title || pair.question?.id || 'Q?' }
-                  </Text>
-                </Button>
 
-                <View style={BTN_CONNECTOR}></View>
+            <View>
+              {model.pairs.map((pair: PairType, idx: number) => (
+                // <View key={idx}>
+                  // <Text>{ JSON.stringify(pair) }</Text>
+                  <View style={MATCH_ASSIGN_BUTTONS_CONTAINER} key={idx}>
+                    <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('question', idx)}>
+                      <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+                        { pair.question?.title || pair.question?.id || 'Q?' }
+                      </Text>
+                    </Button>
 
-                <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('answer', idx)}>
-                  <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
-                    { pair.answer?.title || pair.answer?.id || 'A?' }
-                  </Text>
-                </Button>
-              </View>
-            // </View>
-          ))}
-        </View>
+                    <View style={BTN_CONNECTOR}></View>
+
+                    <Button style={MATCH_ASSIGN_BUTTONS} onPress={showModal('answer', idx)}>
+                      <Text style={MATCH_ASSIGN_BUTTONS_PRIMARY_TEXT}>
+                        { pair.answer?.title || pair.answer?.id || 'A?' }
+                      </Text>
+                    </Button>
+                  </View>
+                // </View>
+              ))}
+            </View>
 
         <Button style={CREATE_BUTTON} onPress={doSave}>
           <Text style={CREATE_BUTTON_TEXT}>CREATE</Text>
@@ -197,18 +187,22 @@ export const AssignMatches = observer(function AssignMatches(props: AssignMatche
 
   return (
     <View testID="AssignMatchesScreen" style={FULL}>
-      <View style={CONTAINER} >
-        <SafeAreaView>
-          <Header
-            // headerTx="demoScreen.howTo"
-            leftIcon="back"
-            onLeftPress={goBack}
-            style={HEADER}
-          />
-          { components }
+      <Screen style={CONTAINER} preset={ modalVisible ? "fixed" : "scroll"} backgroundColor={color.transparent}>
+    
+    
+        <View style={CONTAINER} >
           
-        </SafeAreaView>
-      </View>
+            <Header
+              // headerTx="demoScreen.howTo"
+              leftIcon="back"
+              onLeftPress={goBack}
+              style={HEADER}
+            />
+            { components }
+            
+          
+        </View>
+      </Screen>
     </View>
   )
 })
@@ -232,7 +226,7 @@ const MATCH_ASSIGN_BUTTONS_CONTAINER: ViewStyle = {
   flex: 10,
   justifyContent: "center",
   flexDirection: "row",
-  paddingBottom: 120,
+  paddingBottom: 50,
 }
 
 const MATCH_ASSIGN_BUTTONS: ViewStyle = {

@@ -2,30 +2,15 @@ import React, { useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
 import { View, Text, FlatList, TextStyle, TouchableOpacity, ViewStyle } from "react-native"
-import { range } from "ramda"
 import { color, typography } from "../../theme"
 import RNFS from 'react-native-fs';
 
-import {
-    Checkbox,
-    Button,
-    Header,
-    Screen,
-    // Text,
-    Wallpaper,
-    AutoImage as Image,
-    PlaySoundTest,
-  } from "../../components"
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AudioRecorder from './audio-recorder'
-import { string } from "mobx-state-tree/dist/internal"
 import { ResolvableSound } from "../sound-player/sound-library-sounds"
 
-const FULL: ViewStyle = { flex: 1 }
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
-//   paddingHorizontal: spacing[4],
-}
+
 const BOLD: TextStyle = { fontWeight: "bold" }
 const PRIMARYTEXTCOLOR: TextStyle = { color: color.palette.darkBlue }
 const TEXT: TextStyle = {
@@ -34,14 +19,29 @@ const TEXT: TextStyle = {
 }
 
 
+const HORIZONTAL_SPACING = {
+    marginLeft: 15,
+    marginRight: 15,
+    width: 32
+}
+const buttonSize = 30
+
+const DELETE_BUTTON = {
+    backgroundColor: 'red',
+    marginHorizontal: 10,
+}
+
+const PLAY_BUTTON = {
+    width: 35,
+    height: 35,
+    // borderColor: palette.angry,
+    // borderWidth: 2,
+    // borderStyle: "solid",
+  }
+
 const FLATLIST_ITEM: ViewStyle = {
 flexDirection: "row",
 paddingVertical: 30,
-}
-
-const FLATLIST_ITEM_DIFFICULTY: TextStyle = {
-    ...TEXT,
-    paddingLeft: 20,
 }
 
 const FLATLIST_ITEM_TITLE: TextStyle = {
@@ -113,20 +113,22 @@ const ListItem = observer(function ListItem({ selected, controls, row: { item: s
         }
     }
 
-    const messages = []
-    messages[0] = "Play"
-    messages[1] = "Stop"
-    messages[2] = "ERROR"
+    const icons = []
+    icons[0] = "play"
+    icons[1] = "stop"
+    icons[2] = "bug"
+
+
+    const selectBox = selected ? 'check-square-o' : 'square-o'
+    
     
     return (
     <TouchableOpacity>
       <View style={FLATLIST_ITEM}>
-        { ctrl.select ? <Checkbox style={{ marginLeft: 10, marginRight: 10}} value={ selected } onToggle={ onSelected } /> : null }
-        <Button style={FLATLIST_ITEM_DIFFICULTY} text={messages[status]} onPress={togglePlaying} />
-        { ctrl.delete ? <Button style={FLATLIST_ITEM_DIFFICULTY} text="Delete" onPress={() => onDelete(sound)} /> : null }
+        { ctrl.select ? <Icon name={ selectBox }  size={buttonSize}  style={ HORIZONTAL_SPACING } onPress={ onSelected } /> : null }
+        <Icon name={ icons[status] } size={buttonSize} style={ HORIZONTAL_SPACING } color={ "#000" } onPress={togglePlaying} />
+        { ctrl.delete ? <Icon name="trash" size={buttonSize} style={ HORIZONTAL_SPACING } onPress={() => onDelete(sound)} /> : null }
         <Text style={FLATLIST_ITEM_TITLE}>{sound.title || '<No Title>'}</Text>
-        {/* <Text> {sound.path}</Text> */}
-        {/* <Text> {selected ? 'yes' : 'no'}</Text> */}
       </View>
     </TouchableOpacity>
   )
@@ -205,12 +207,15 @@ const AudioLibrary = observer(function AudioLibrary(props: AudioLibraryProps) {
 
             <View style={FLATLIST_ITEM}>
                 <Text style={FLATLIST_ITEM_TITLE}>Audio Library</Text>
-                <Button onPress={addSound} text="+"/>
-                <Text>Visible? { modalVisible ? 'yes' : 'no' }</Text>
+                <Icon name={ 'plus' } size={30} style={ HORIZONTAL_SPACING } color={ "#000" } onPress={addSound} />
+                {/* <Text>Visible? { modalVisible ? 'yes' : 'no' }</Text> */}
                 { status === 1 && <Text>Saving...</Text> }
             </View>
             <FlatList
                 data={audioStore.allSounds}
+                style={{ height: 400 }}
+                scrollEnabled={true}
+                initialNumToRender={15}
                 renderItem={ (sound) => 
                     <ListItem 
                         row={ sound } 

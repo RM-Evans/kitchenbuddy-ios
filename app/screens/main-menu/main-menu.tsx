@@ -82,13 +82,18 @@ const HOW_TO_PLAY_MENU_BUTTON_TEXT: TextStyle = {
 
 const SIGNUP_REDIRECT_TEXT: TextStyle = {
   flex: 1,
+  flexDirection: "row",
+  display: 'flex',
+  width: '100%',
   ...TEXT,
-  textAlign: "center",
+  textAlign: "center"
 }
 
 const SIGNUP_REDIRECT_LINK: TextStyle = {
   ...TEXT,
   ...BOLD,
+  flex: 1,
+  textAlign: "center",
   textDecorationLine: "underline",
 }
 
@@ -124,13 +129,13 @@ export const MainMenu = observer(function MainMenu() {
       //     ),
       // }
     )
-    console.log(result)
     // soundMatchStore.deleteEverything()
   }
 
   const navigation = useNavigation()
 
   const goLogin = () => navigation.navigate("login")
+  const goAudio = () => navigation.navigate("audio")
 
   const goGameLibrary = () => navigation.navigate("gameLibrary")
 
@@ -175,11 +180,14 @@ export const MainMenu = observer(function MainMenu() {
           </Text>
         </Text> */}
 
-        <Text style={SIGNUP_REDIRECT_TEXT}>
+        <View style={SIGNUP_REDIRECT_TEXT}>
+          <Text style={SIGNUP_REDIRECT_LINK} onPress={goAudio}>
+            Manage Audio
+          </Text>
           <Text style={SIGNUP_REDIRECT_LINK} onPress={goLogin}>
             Logout
           </Text>
-        </Text>
+        </View>
       </Screen>
     </View>
   )

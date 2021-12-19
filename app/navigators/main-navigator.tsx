@@ -21,6 +21,7 @@ import {
   GameLibrary,
   GameIndividual,
   GeneratedGame,
+  AudioScreen,
 } from "../screens"
 
 /**
@@ -43,10 +44,11 @@ export type PrimaryParamList = {
   // password_recovering: undefined
   signup: undefined
   // password_recovery: undefined
-  // main_menu: undefined
+  main_menu: undefined
   // choose_difficulty: undefined
   // choose_title: undefined
-  // choose_title_difficulty: undefined
+  choose_title_difficulty: undefined
+  audio: undefined,
   assignMatches: { title: string; pairCount: number }
   gameLibrary: undefined
   setupGame: { gameId: string }
@@ -75,6 +77,7 @@ export function MainNavigator() {
       <Stack.Screen name="signup" component={SignupScreen} />
       {/* <Stack.Screen name="password_recovery" component={PasswordRecoveryScreen} /> */}
       <Stack.Screen name="main_menu" component={MainMenu} />
+      <Stack.Screen name="audio" component={AudioScreen} />
       {/* <Stack.Screen name="choose_difficulty" component={ChooseDifficulty} /> */}
       {/* <Stack.Screen name="choose_title" component={ChooseTitle} /> */}
       <Stack.Screen name="choose_title_difficulty" component={ChooseTitleAndDifficulty} />

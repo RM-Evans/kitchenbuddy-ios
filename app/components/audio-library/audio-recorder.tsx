@@ -1,5 +1,5 @@
 import { v4 as UUID } from "uuid"
-import React, { useState, PermissionsAndroid, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { View, Modal, TextInput, FlatList, ViewStyle, Text, Alert, TextStyle } from "react-native"
 import { color } from "../../theme"
 
@@ -9,7 +9,17 @@ import RNFS from 'react-native-fs'
 import SoundRecorder from 'react-native-sound-recorder';
 import { requestExternalStorage, requestMicrophonePermission } from "./permissions";
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+
+
+const HORIZONTAL_SPACING = {
+    top: 35,
+    marginLeft: 15,
+    marginRight: 15,
+    width: 32
+}
+const buttonSize = 30
 
 const SAVED_AUDIO_PATH = `${RNFS.DocumentDirectoryPath}/soundfave/`
 
@@ -109,10 +119,22 @@ const AudioRecorder = function AudioRecorder(props: RecorderProps) {
 
 
     const recordingStatusMessages = []
-    recordingStatusMessages[0] = 'Start Recording?'
-    recordingStatusMessages[1] = 'Initializing recorder....'
-    recordingStatusMessages[2] = 'Recording!'
-    recordingStatusMessages[3] = 'Saving...'
+    recordingStatusMessages[0] = 'R'
+    recordingStatusMessages[1] = 'I'
+    recordingStatusMessages[2] = 'S'
+    recordingStatusMessages[3] = 'V'
+
+    const recordingStatusStyle: ViewStyle[] = []
+    recordingStatusStyle[0] = { backgroundColor: 'white' }
+    recordingStatusStyle[1] = { backgroundColor: 'gray'}
+    recordingStatusStyle[2] = { backgroundColor: 'green'}
+    recordingStatusStyle[3] = { backgroundColor: 'red' }
+
+    const icons = []
+    icons[0] = "microphone"
+    icons[1] = "spinner"
+    icons[2] = "stop"
+    icons[3] = "spinner"
 
 
     const onSave = async () => {
@@ -143,23 +165,17 @@ const AudioRecorder = function AudioRecorder(props: RecorderProps) {
             >
                 <View style={VIEW_STYLE}>
                     <View style={{ display: 'flex', flexDirection: "row" }}>
-                        <Button onPress={toggleRecording} text={recordingStatusMessages[recordingStatus] || ('Unknown status: ' + recordingStatus)} />
+                        <Icon name={ icons[recordingStatus] } size={buttonSize} style={ HORIZONTAL_SPACING } color={ "#fff" } onPress={toggleRecording} />
                         <TextInput
-                            style={{ ...FORM_FIELD, flex: 1 }}
+                            style={{ ...FORM_FIELD, flex: 1, marginBottom: 15, color: 'white' }}
                             placeholder="What sound are you recording?"
                             autoCapitalize="none"
                             returnKeyType="next"
                             onChangeText={setTitle}
                             value={title}
-                        // onSubmitEditing={() => { this.loginPassword.focus(); }}
-                        // https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar
-                        //
-                        // blurOnSubmit={false}
                         />
-                    </View>
-                    <View style={{ display: 'flex', flexDirection: "row" }}>
-                        <Button style={{ flex: 1 }} onPress={onCancel} text="Cancel" />
-                        <Button style={{ flex: 1 }} onPress={onSave} text="Save" />
+                        <Icon name="undo" size={buttonSize} style={ { ...HORIZONTAL_SPACING } } color={ "#fff" } onPress={onCancel} />
+                        <Icon name="save" size={buttonSize} style={ { ...HORIZONTAL_SPACING } } color={ "#fff" } onPress={onSave} />
                     </View>
                 </View>
             </Modal>

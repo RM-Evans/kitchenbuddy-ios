@@ -127,8 +127,8 @@ export const LoginScreen = observer(function LoginScreen() {
   const goSignUp = () => navigation.navigate("signup")
   const goPasswordRecovery = () => navigation.navigate("password_recovery")
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("example@example.com")
+  const [password, setPassword] = useState("anypassword")
 
   const onLogin = () => {
     const validation = validate(
@@ -142,12 +142,13 @@ export const LoginScreen = observer(function LoginScreen() {
 
     console.log(validation)
     if (Object.keys(validation).length > 0) {
-      alert("you are invalid")
+      alert("Invalid login. Enter any valid email address")
     } else {
-      alert("success, backend login!")
+      // alert("success, backend login!")
       // const auth = await apollo.mutation(login...)
       // if( auth.success ){
-      navigation.navigate("DashboardScreen")
+      // navigation.navigate("Dashboard")
+      goMainMenu()
       // } else {
       //   alert('bad password')
       // }
